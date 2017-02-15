@@ -1,0 +1,23 @@
+{
+  "name": "minha-gasosa-p1",
+  "description": "Servidor do projeto de p1",
+  "main": "index.js",
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "homepage": "https://github.com/alexnum/minha-gasosa",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.1.1"
+  }
+}
