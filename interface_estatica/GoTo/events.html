@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>INSPINIA | Dashboard v.4</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        .vou {
+            text-align: center;
+            background-color: #1ab394;
+            color: #fff;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            width: 10px;
+        }
+
+        .nao-vou {
+            text-align: center;
+            background-color: #337ab7;
+            color: #fff;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            width: 10px;
+            color: #fff;
+        }
+
+        .progress-bar-blue {
+            background-color: #337ab7;
+        }
+
+        .btn-blue {
+            background-color: #337ab7;
+            color: white;
+        }
+
+        .vou tr {
+            display: block;
+        }
+
+        .project-title a {
+            font-size: 20px;
+        }
+
+        .project-title small {
+            font-size: 100%;
+        }
+    </style>
+</head>
+
+<body class="top-navigation">
+
+<div id="wrapper">
+    <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom white-bg">
+            <nav class="navbar navbar-static-top" role="navigation">
+                <div class="navbar-header" style="margin-left: 1%">
+                    <span href="#"><img alt="image" src="img/logo.png" style="width: 90px; margin-top: 13%;"/></span>
+                </div>
+                <div class="navbar-collapse collapse" id="navbar" style="margin-left: 9%">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Início</a>
+                        </li>
+                        <li class="dropdown">
+                            <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Eventos <span class="caret"></span></a>
+                            <ul role="menu" class="dropdown-menu">
+                                <li><a href="">Participando</a></li>
+                                <li><a href="">Meus Eventos</a></li>
+                                <li><a href="">Fechados</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Minha Conta</a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <a href="">
+                                <i class="fa fa-map-marker"></i> Campina Grande, PB
+                            </a>
+                        </li>
+                        <li>
+                            <a href="login.html">
+                                <i class="fa fa-sign-out"></i> Sair
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="wrapper wrapper-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="wrapper wrapper-content animated fadeInUp">
+
+                            <div class="ibox">
+                                <div class="ibox-title">
+                                    <h5>Meus eventos</h5>
+                                </div>
+                                <div class="ibox-content">
+                                    <div class="row m-b-sm m-t-sm">
+                                        <div class="col-md-1">
+                                            <button type="button" id="loading-example-btn" class="btn btn-white btn-sm"><i class="fa fa-refresh"></i> Refresh</button>
+                                        </div>
+                                        <div class="col-md-11">
+                                            <div class="input-group"><input type="text" placeholder="Encontrar evento..." class="input-sm form-control"> <span class="input-group-btn">
+                                        <button type="button" class="btn btn-sm btn-primary"> Buscar</button> </span></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="project-list">
+
+                                        <table class="table table-hover">
+                                            <tbody>
+                                            <tr>
+                                                <td class="project-status border-right vou" style="text-align: center">
+                                                    <h2 style="display: block">Sab</h2>
+                                                    <h3 style="display: block">18</h3>
+                                                    <h4 style="display: block">Feb</h4>
+                                                </td>
+                                                <td class="project-title" style="max-width: 360px;">
+                                                    <a href="project_detail.html">Wesley Safadão</a>
+                                                    <br>
+                                                    <small>Conheça a história do cara que saiu da universal e virou programador</small>
+                                                    <div style="display: flex; margin-top: 10px">
+                                                        <h4><i class="fa fa-map-marker"></i> Universidade Federal de Campina Grande </h4>
+                                                        <h4 style="margin-left: 10px"><i class="fa fa-clock-o"></i> 18:45h </h4>
+                                                    </div>
+                                                </td>
+                                                <td class="project-completion">
+                                                    <small style="font-size: 100%;">Total arrecadado: 45%</small>
+                                                    <div class="progress progress-mini" style="height: 30px;">
+                                                        <div style="height: 29px;width: 45%;" class="progress-bar"></div>
+                                                    </div>
+                                                </td>
+                                                <td class="project-actions" style="">
+                                                    <span style="font-size: 24px;">R$ 85000.00</span><br>
+                                                    <span style="font-size: initial;"><i class="fa fa-users" style="margin-right: 10px;">
+
+                                                    </i>4000/10000</span>
+                                                </td>
+                                                <td style="text-align: right">
+                                                    <button class="btn btn-primary btn-lg">Ver mais</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="project-status border-right nao-vou" style="text-align: center">
+                                                    <h2 style="display: block">Sab</h2>
+                                                    <h3 style="display: block">24</h3>
+                                                    <h4 style="display: block">Abril</h4>
+                                                </td>
+                                                <td class="project-title" style="max-width: 360px;">
+                                                    <a href="project_detail.html">Jantar dos namorados</a>
+                                                    <br>
+                                                    <small>Venha conhecer o amor da sua vida</small>
+                                                    <div style="display: flex; margin-top: 10px">
+                                                        <h4><i class="fa fa-map-marker"></i> Forno de Pizza </h4>
+                                                        <h4 style="margin-left: 10px"><i class="fa fa-clock-o"></i> 21:00h </h4>
+                                                    </div>
+                                                </td>
+                                                <td class="project-completion">
+                                                    <small style="font-size: 100%;">Total arrecadado: 50%</small>
+                                                    <div class="progress progress-mini" style="height: 30px;">
+                                                        <div style="height: 29px;width: 65%;" class="progress-bar-blue"></div>
+                                                    </div>
+                                                </td>
+                                                <td class="project-actions" style="">
+                                                    <span style="font-size: 24px;">R$ 20.00</span><br>
+                                                    <span style="font-size: initial;"><i class="fa fa-users" style="margin-right: 10px;">
+
+                                                    </i>1/2</span>
+                                                </td>
+                                                <td style="text-align: right">
+                                                    <button class="btn btn-primary btn-blue btn-lg">Ver mais</button>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="project-status border-right vou" style="text-align: center">
+                                                    <h2 style="display: block">Sab</h2>
+                                                    <h3 style="display: block">18</h3>
+                                                    <h4 style="display: block">Feb</h4>
+                                                </td>
+                                                <td class="project-title" style="max-width: 360px;">
+                                                    <a href="project_detail.html">TECH Experience</a>
+                                                    <br>
+                                                    <small>Venha participar do 1º Hackathon</small>
+                                                    <div style="display: flex; margin-top: 10px">
+                                                        <h4><i class="fa fa-map-marker"></i> Conductor </h4>
+                                                        <h4 style="margin-left: 10px"><i class="fa fa-clock-o"></i> 08:00h </h4>
+                                                    </div>
+                                                </td>
+                                                <td class="project-completion">
+                                                    <small style="font-size: 100%;">Total arrecadado: 75%</small>
+                                                    <div class="progress progress-mini" style="height: 30px;">
+                                                        <div style="height: 29px;width: 75%;" class="progress-bar"></div>
+                                                    </div>
+                                                </td>
+                                                <td class="project-actions" style="">
+                                                    <span style="font-size: 24px;">R$ 500.00</span><br>
+                                                    <span style="font-size: initial;"><i class="fa fa-users" style="margin-right: 10px;">
+
+                                                    </i>45/80</span>
+                                                </td>
+                                                <td style="text-align: right">
+                                                    <button class="btn btn-primary btn-lg">Ver mais</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="project-status border-right vou" style="text-align: center">
+                                                    <h2 style="display: block">Sab</h2>
+                                                    <h3 style="display: block">24</h3>
+                                                    <h4 style="display: block">Abril</h4>
+                                                </td>
+                                                <td class="project-title" style="max-width: 360px;">
+                                                    <a href="project_detail.html">Vamos para a vila aquática</a>
+                                                    <br>
+                                                    <small>Evento dos estudantes de ciência da computação - UFCG em parceira com o IFPB</small>
+                                                    <div style="display: flex; margin-top: 10px">
+                                                        <h4><i class="fa fa-map-marker"></i> Clube dos caçadores </h4>
+                                                        <h4 style="margin-left: 10px"><i class="fa fa-clock-o"></i> 18:45h </h4>
+                                                    </div>
+                                                </td>
+                                                <td class="project-completion">
+                                                    <small style="font-size: 100%;">Total arrecadado: 65%</small>
+                                                    <div class="progress progress-mini" style="height: 30px;">
+                                                        <div style="height: 29px;width: 65%;" class="progress-bar"></div>
+                                                    </div>
+                                                </td>
+                                                <td class="project-actions" style="">
+                                                    <span style="font-size: 24px;">R$ 400.00</span><br>
+                                                    <span style="font-size: initial;"><i class="fa fa-users" style="margin-right: 10px;">
+
+                                                    </i>40/1000</span>
+                                                </td>
+                                                <td style="text-align: right">
+                                                    <button class="btn btn-primary btn-lg">Ver mais</button>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="project-status border-right vou" style="text-align: center">
+                                                    <h2 style="display: block">Sab</h2>
+                                                    <h3 style="display: block">18</h3>
+                                                    <h4 style="display: block">Feb</h4>
+                                                </td>
+                                                <td class="project-title" style="max-width: 360px;">
+                                                    <a href="project_detail.html">TECH Experience</a>
+                                                    <br>
+                                                    <small>Venha participar do 1º Hackathon</small>
+                                                    <div style="display: flex; margin-top: 10px">
+                                                        <h4><i class="fa fa-map-marker"></i> Conductor </h4>
+                                                        <h4 style="margin-left: 10px"><i class="fa fa-clock-o"></i> 08:00h </h4>
+                                                    </div>
+                                                </td>
+                                                <td class="project-completion">
+                                                    <small style="font-size: 100%;">Total arrecadado: 65%</small>
+                                                    <div class="progress progress-mini" style="height: 30px;">
+                                                        <div style="height: 29px;width: 65%;" class="progress-bar"></div>
+                                                    </div>
+                                                </td>
+                                                <td class="project-actions" style="">
+                                                    <span style="font-size: 24px;">R$ 400.00</span><br>
+                                                    <span style="font-size: initial;"><i class="fa fa-users" style="margin-right: 10px;">
+
+                                                    </i>40/1000</span>
+                                                </td>
+                                                <td style="text-align: right">
+                                                    <button class="btn btn-primary btn-lg">Ver mais</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="project-status border-right vou" style="text-align: center">
+                                                    <h2 style="display: block">Sab</h2>
+                                                    <h3 style="display: block">24</h3>
+                                                    <h4 style="display: block">Abril</h4>
+                                                </td>
+                                                <td class="project-title" style="max-width: 360px;">
+                                                    <a href="project_detail.html">Vamos para a vila aquática</a>
+                                                    <br>
+                                                    <small>Evento dos estudantes de ciência da computação - UFCG em parceira com o IFPB</small>
+                                                    <div style="display: flex; margin-top: 10px">
+                                                        <h4><i class="fa fa-map-marker"></i> Clube dos caçadores </h4>
+                                                        <h4 style="margin-left: 10px"><i class="fa fa-clock-o"></i> 18:45h </h4>
+                                                    </div>
+                                                </td>
+                                                <td class="project-completion">
+                                                    <small style="font-size: 100%;">Total arrecadado: 65%</small>
+                                                    <div class="progress progress-mini" style="height: 30px;">
+                                                        <div style="height: 29px;width: 65%;" class="progress-bar"></div>
+                                                    </div>
+                                                </td>
+                                                <td class="project-actions" style="">
+                                                    <span style="font-size: 24px;">R$ 400.00</span><br>
+                                                    <span style="font-size: initial;"><i class="fa fa-users" style="margin-right: 10px;">
+
+                                                    </i>40/1000</span>
+                                                </td>
+                                                <td style="text-align: right">
+                                                    <button class="btn btn-primary btn-lg">Ver mais</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="project-status border-right vou" style="text-align: center">
+                                                    <h2 style="display: block">Sab</h2>
+                                                    <h3 style="display: block">18</h3>
+                                                    <h4 style="display: block">Feb</h4>
+                                                </td>
+                                                <td class="project-title" style="max-width: 360px;">
+                                                    <a href="project_detail.html">TECH Experience</a>
+                                                    <br>
+                                                    <small>Venha participar do 1º Hackathon</small>
+                                                    <div style="display: flex; margin-top: 10px">
+                                                        <h4><i class="fa fa-map-marker"></i> Conductor </h4>
+                                                        <h4 style="margin-left: 10px"><i class="fa fa-clock-o"></i> 08:00h </h4>
+                                                    </div>
+                                                </td>
+                                                <td class="project-completion">
+                                                    <small style="font-size: 100%;">Total arrecadado: 65%</small>
+                                                    <div class="progress progress-mini" style="height: 30px;">
+                                                        <div style="height: 29px;width: 65%;" class="progress-bar"></div>
+                                                    </div>
+                                                </td>
+                                                <td class="project-actions" style="">
+                                                    <span style="font-size: 24px;">R$ 400.00</span><br>
+                                                    <span style="font-size: initial;"><i class="fa fa-users" style="margin-right: 10px;">
+
+                                                    </i>40/1000</span>
+                                                </td>
+                                                <td style="text-align: right">
+                                                    <button class="btn btn-primary btn-lg">Ver mais</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="project-status border-right vou" style="text-align: center">
+                                                    <h2 style="display: block">Sab</h2>
+                                                    <h3 style="display: block">24</h3>
+                                                    <h4 style="display: block">Abril</h4>
+                                                </td>
+                                                <td class="project-title" style="max-width: 360px;">
+                                                    <a href="project_detail.html">Vamos para a vila aquática</a>
+                                                    <br>
+                                                    <small>Evento dos estudantes de ciência da computação - UFCG em parceira com o IFPB</small>
+                                                    <div style="display: flex; margin-top: 10px">
+                                                        <h4><i class="fa fa-map-marker"></i> Clube dos caçadores </h4>
+                                                        <h4 style="margin-left: 10px"><i class="fa fa-clock-o"></i> 18:45h </h4>
+                                                    </div>
+                                                </td>
+                                                <td class="project-completion">
+                                                    <small style="font-size: 100%;">Total arrecadado: 65%</small>
+                                                    <div class="progress progress-mini" style="height: 30px;">
+                                                        <div style="height: 29px;width: 65%;" class="progress-bar"></div>
+                                                    </div>
+                                                </td>
+                                                <td class="project-actions" style="">
+                                                    <span style="font-size: 24px;">R$ 400.00</span><br>
+                                                    <span style="font-size: initial;"><i class="fa fa-users" style="margin-right: 10px;">
+
+                                                    </i>40/1000</span>
+                                                </td>
+                                                <td style="text-align: right">
+                                                    <button class="btn btn-primary btn-lg">Ver mais</button>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="footer">
+            <div class="pull-right">
+                10GB of <strong>250GB</strong> Free.
+            </div>
+            <div>
+                <strong>Copyright</strong> Example Company &copy; 2014-2017
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<!-- Mainly scripts -->
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+<!-- Custom and plugin javascript -->
+<script src="js/inspinia.js"></script>
+<script src="js/plugins/pace/pace.min.js"></script>
+
+<!-- Flot -->
+<script src="js/plugins/flot/jquery.flot.js"></script>
+<script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+<script src="js/plugins/flot/jquery.flot.resize.js"></script>
+
+<!-- ChartJS-->
+<script src="js/plugins/chartJs/Chart.min.js"></script>
+
+<!-- Peity -->
+<script src="js/plugins/peity/jquery.peity.min.js"></script>
+<!-- Peity demo -->
+<script src="js/demo/peity-demo.js"></script>
+
+
+<script>
+  $(document).ready(function() {
+
+
+    var d1 = [[1262304000000, 6], [1264982400000, 3057], [1267401600000, 20434], [1270080000000, 31982], [1272672000000, 26602], [1275350400000, 27826], [1277942400000, 24302], [1280620800000, 24237], [1283299200000, 21004], [1285891200000, 12144], [1288569600000, 10577], [1291161600000, 10295]];
+    var d2 = [[1262304000000, 5], [1264982400000, 200], [1267401600000, 1605], [1270080000000, 6129], [1272672000000, 11643], [1275350400000, 19055], [1277942400000, 30062], [1280620800000, 39197], [1283299200000, 37000], [1285891200000, 27000], [1288569600000, 21000], [1291161600000, 17000]];
+
+    var data1 = [
+      { label: "Data 1", data: d1, color: '#17a084'},
+      { label: "Data 2", data: d2, color: '#127e68' }
+    ];
+    $.plot($("#flot-chart1"), data1, {
+      xaxis: {
+        tickDecimals: 0
+      },
+      series: {
+        lines: {
+          show: true,
+          fill: true,
+          fillColor: {
+            colors: [{
+              opacity: 1
+            }, {
+              opacity: 1
+            }]
+          },
+        },
+        points: {
+          width: 0.1,
+          show: false
+        },
+      },
+      grid: {
+        show: false,
+        borderWidth: 0
+      },
+      legend: {
+        show: false,
+      }
+    });
+
+    var lineData = {
+      labels: ["January", "February", "March", "April", "May", "June", "July"],
+      datasets: [
+        {
+          label: "Example dataset",
+          backgroundColor: "rgba(26,179,148,0.5)",
+          borderColor: "rgba(26,179,148,0.7)",
+          pointBackgroundColor: "rgba(26,179,148,1)",
+          pointBorderColor: "#fff",
+          data: [48, 48, 60, 39, 56, 37, 30]
+        },
+        {
+          label: "Example dataset",
+          backgroundColor: "rgba(220,220,220,0.5)",
+          borderColor: "rgba(220,220,220,1)",
+          pointBackgroundColor: "rgba(220,220,220,1)",
+          pointBorderColor: "#fff",
+          data: [65, 59, 40, 51, 36, 25, 40]
+        }
+      ]
+    };
+
+    var lineOptions = {
+      responsive: true
+    };
+
+
+    var ctx = document.getElementById("lineChart").getContext("2d");
+    new Chart(ctx, {type: 'line', data: lineData, options:lineOptions});
+
+  });
+</script>
+
+</body>
+
+</html>
