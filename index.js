@@ -4,7 +4,8 @@ var handlebars = require('express-handlebars');
 var cookieParser = require('cookie-parser');
 
 var port = process.env.PORT || 5000;
-var db = 'mongodb://heroku_5qcn5df4:l0imr1m3a4sse3dauep5qj131s@ds033096.mlab.com:33096/heroku_5qcn5df4';
+//var db = 'mongodb://heroku_5qcn5df4:l0imr1m3a4sse3dauep5qj131s@ds033096.mlab.com:33096/heroku_5qcn5df4';
+var db = 'mongodb://192.168.1.48:27017/hackathon';
 
 var https = require('https');
 var querystring = require('querystring');
@@ -19,8 +20,14 @@ mongoose.connect(db, function(err) {
 
 
 require('./models/User');
+require('./models/Card');
+require('./models/Company');
+require('./models/Contribuition');
+require('./models/Party');
+require('./models/PayamentMethod');
+require('./models/State');
+require('./models/City');
 
-var UserModel = mongoose.model('User');
 
 var routes = require('./routes/app');
 
@@ -63,10 +70,16 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/bower_components'));
 
 var userRoute = require('./routes/users');
+var partyRoute = require('./routes/party');
+var companyRoute = require('./routes/company');
+var cardRoute = require('./routes/card');
 
 app.use('/', routes);
 app.use('/site', router);
 app.use('/site/user', userRoute);
+app.use('/site/company', companyRoute);
+app.use('/site/party', partyRoute);
+app.use('/site/card', cardRoute);
 
 app.engine('handlebars', handlebars({
   defaultLayout: 'main',

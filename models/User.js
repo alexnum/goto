@@ -7,7 +7,10 @@ var userSchema = mongoose.Schema({
   name: String,
   login: String,
   email: String,
-  password: String
+  password: String,
+  parties: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Party' }],
+  cards: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Card' }],
+  city: { type: mongoose.Schema.Types.ObjectId, ref: 'City' }
 });
 
 mongoose.model('User', userSchema);

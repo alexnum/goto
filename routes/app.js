@@ -12,6 +12,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 
 var User = mongoose.model('User');
+var City = mongoose.model('City');
 
 router.get('/register', function (req, res, next) {
   res.render('register', {});
@@ -39,6 +40,20 @@ router.get('/states', function (req, res, next) {
     }
   });
 });
+
+router.get('/city', function (req, res, next) {
+    var cityName = req.query.q;
+    //If the user isn't really authenticated in the server
+    City.find({nome: new RegExp(cityName, 'i')}).populate('state').exec(function (err, cities) {
+        if (err) {
+            res.status(500).send('Failed to get citie.');
+        } else {
+            res.send(cities)
+        }
+    });
+});
+
+
 
 router.post('/authenticate', function (req, res, next) {
   console.log("Auth");
