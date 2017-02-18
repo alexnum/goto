@@ -12,26 +12,42 @@ var Card = mongoose.model('Card');
 
 router.post('/', function(req, res){
     var card = req.body();
-    card.owner = req.reqUser._id;
-    new Card(card).save(function(err, ad){
+    card.user = req.reqUser._id;
+    new Card(card).save(function(err, newCard){
         if(err){
             res.redirect('err');
         }else{
-            res.redirect('sucess');
+            newCard.populate('user').exec(function(err, user){
+                if(err){
+                    res.redirect('err');
+                }else{
+                    user.cards.push(newCard._id);
+                    res.redirect('/');
+                }
+            });
         }
     });
 });
 
-router.post('/:id', function(req, res){
-    var newParty = req.body();
-    var partyCode = req.param.id;
-    Party.findOneAndUpdate({code: partyCode},function (err, pt) {
-        if(err){
-            res.redirect('err');
-        }else{
-            res.redirect('sucess' + pt._id);
-        }
-    })
+router.delete('/:id', function(req, res){
+    var cardId = req.params.id;
+    Card.find({_id: cardId}, function(err, card){
+       if(err){
+           console.log('err');
+       } else{
+           if(card.user != req.reqUser._id){
+               res.redirect('err')
+           }else{
+               card.remove(function(err, removedCard){
+                   if(err){
+                       res.redirect('err');
+                   }else{
+                       res.redirect('/')
+                   }
+               });
+           }
+       }
+    });
 });
 
 module.exports = router;

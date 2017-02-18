@@ -23,3 +23,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+
+function preProcessParty(party, userId){
+    if(party.users.length > 0 && party.users[0].constructor == String){
+        party.userInParty = party.users.indexOf(userId) > -1;
+    }else{
+        var userIds = party.users.map(function(us) {return us.f_id;});
+        party.userInParty = userIds.indexOf(userId) > -1;
+    }
+    party.percent = (party.currentValue*100)/party.totalValue;
+
+    party.totalUsers = party.users.length;
+}
+
+app.use(preProcessParty)

@@ -10,7 +10,8 @@ var userSchema = mongoose.Schema({
   password: String,
   parties: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Party' }],
   cards: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Card' }],
-  city: { type: mongoose.Schema.Types.ObjectId, ref: 'City' }
+  city: { type: mongoose.Schema.Types.ObjectId, ref: 'City' },
+  walletBalance: Number
 });
 
 mongoose.model('User', userSchema);

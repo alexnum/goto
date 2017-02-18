@@ -19,7 +19,9 @@ var partySchema = mongoose.Schema({
     tag: [String],
     code: String,
     minValue: Number,
-    capacity: Number
+    capacity: Number,
+    item: { type: mongoose.Schema.Types.ObjectId, ref: 'MenuItem' },
+
 });
 
 mongoose.model('Party', partySchema);

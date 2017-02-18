@@ -8,4 +8,4 @@ var payamentSchema = mongoose.Schema({
     type: String
 });
 
-mongoose.model('PayamentMethos', payamentSchema);
+mongoose.model('PayamentMethod', payamentSchema);

@@ -27,6 +27,7 @@ require('./models/Party');
 require('./models/PayamentMethod');
 require('./models/State');
 require('./models/City');
+require('./models/MenuItem');
 
 
 var routes = require('./routes/app');
@@ -118,9 +119,81 @@ app.get('/', function(req, res) {
   }
 });
 
-
+//TODO Remove
+var Company = mongoose.model('Company');
+var Party = mongoose.model('Party');
+var MenuItem = mongoose.model('MenuItem');
 app.listen(port, function() {
   console.log('Node app is running on port', port);
+    // var company = {
+    //     name: "Pizarella",
+    //     logo: "",
+    //     payamentMethos: ["58a889058b1e1e39e9fa4303", "58a889058b1e1e39e9fa42fb", "58a889058b1e1e39e9fa4300"],
+    //     address: "Rua das flores, nº 41",
+    //     phoneNumber: "(83) 98888-4444",
+    //     city: "587d81e5b0073721f8f62ba5",
+    //     category: "FOOD"
+    // };
+    // new Company(company).save(function(err, comp){
+    //   if(err){
+    //     console.log('err');
+    //   }else{
+    //     console.log(comp);
+    //   }
+    // })
+
+
+
+    // var pt = {
+    //     name: "PizzaGigante",
+    //     totalValue:  80,
+    //     currentValue:  10,
+    //     users: ["58a87929411e612f3c4cb9d2"],
+    //     date: new Date(),
+    //     place: "58a88bdb14a9e43b3cf33af2",
+    //     description: "Um evento mt legal",
+    //     //TODO DOnt receive in request
+    //     owner: "58a87929411e612f3c4cb9d2",
+    //     tag: ['PITZA'],
+    //     code: "qt678",
+    //     minValue: 60,
+    //     capacity: 80
+    // }
+    // new Party(pt).save(function(err, party){
+    //   if(err){
+    //     console.log("treta");
+    //   }else{
+    //     console.log(party);
+    //   }
+    // })
+
+    // var item = {
+    //     name: "Pizza",
+    //     desc: "Uma pizza muito boa!",
+    //     price: 80,
+    //     company: "58a88bdb14a9e43b3cf33af2"
+    // }
+    // new MenuItem(item).save(function(err, it){
+    //   if(err){
+    //     console.log("errItem");
+    //   }else{
+    //     console.log(it);
+    //     Party.find({},function(err,pt){
+    //       if(err){
+    //         console.log("ErrItemPT");
+    //       }else{
+    //         pt[0].item = it._id;
+    //           pt[0].save(function(err, pt2){
+    //           if(err){
+    //             console.log("error seting ItemTp");
+    //           }else{
+    //               console.log(pt2);
+    //           }
+    //         });
+    //       }
+    //     })
+    //   }
+    // });
 });
 
 

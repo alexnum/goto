@@ -7,11 +7,12 @@ var companySchema = mongoose.Schema({
     name: String,
     parties:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'Party' }],
     logo: String,
-    payamentMethos: [{ type: mongoose.Schema.Types.ObjectId, ref: 'PayamentMethos' }],
+    payamentMethos: [{ type: mongoose.Schema.Types.ObjectId, ref: 'PayamentMethod' }],
     address: String,
     location: { lat: Number, lng: Number },
     phoneNumber: String,
-    city: { type: mongoose.Schema.Types.ObjectId, ref: 'City' }
+    city: { type: mongoose.Schema.Types.ObjectId, ref: 'City' },
+    category: String
 });
 
 mongoose.model('Company', companySchema);

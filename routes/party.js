@@ -9,6 +9,7 @@ var Party = mongoose.model('Party');
 var Company = mongoose.model('Company');
 var Contribuition = mongoose.model('Contribuition');
 
+
 router.post('/', function(req, res){
     var party = req.body();
     party.owner = req.reqUser._id;
@@ -17,14 +18,70 @@ router.post('/', function(req, res){
         if(err){
             res.redirect('err');
         }else{
-            res.redirect('sucess');
+            res.redirect('/');
         }
     });
 });
 
+router.get('/filter', function (req, res) {
+    var type = req.query.type;
+    var nameOrId = req.query.q;
+    var compId = req.query.compId;
+    var now = new Date();
+    var query;
+    switch(type){
+        case 'MINE':
+            query = {
+                users: req.reqUser._id,
+                date: {$gt: now},
+                name: new RegExp(nameOrId, 'i'),
+            };
+            break;
+        case 'OWNER':
+            query = {
+                owner: req.reqUser._id,
+                date: {$gt: now},
+                name: new RegExp(nameOrId, 'i'),
+            };
+            break;
+        case 'CLOSED':
+            query = {
+                users: req.reqUser._id,
+                date: {$lt: now},
+                name: new RegExp(nameOrId, 'i'),
+            };
+            break;
+        case 'COMP':
+            query = {
+                place: compId,
+                name: new RegExp(nameOrId, 'i')
+            };
+            break;
+    }
+    if(!query){
+        res.status(400).send();
+    }else{
+        Party.find({
+            owner: req.reqUser._id,
+            date: {$gt: now}
+        }).populate('users').populate('place').exec(function(err, parties){
+            if(err){
+                res.render('err');
+            }else{
+                var processedParties = parties.map(function(item){
+                    preProcessParty(item, req.reqUser._id);
+                    return item;
+                });
+                res.render('home', {parties: processedParties, type: 'MINE'});
+            }
+        });
+    }
+});
+
+
 router.delete('/:ptCode/kick/:userId', function(req, res){
     var ptCode = req.params.ptCode;
-    var userToRemove = req.params.ptCode;
+    var userToRemove = req.params.userId;
     if(userToRemove == req.reqUser._id){
         res.redirect('bad-request');
     }else{
@@ -73,37 +130,25 @@ router.post('/contribute', function(req, res){
 });
 
 router.post('/:id', function(req, res){
+    var partyCode = req.params.id;
     var newParty = req.body();
-    var partyCode = req.param.id;
-    Party.findOneAndUpdate({code: partyCode},function (err, pt) {
+    Party.update(newParty, {code: partyCode}, {},function (err, num) {
         if(err){
             res.redirect('err');
         }else{
-            res.redirect('sucess' + pt._id);
+            res.redirect('sucess' );
         }
-    })
+    });
 });
 
 
-//TODO Move to company
-// router.get('/:companyId', function(req, res){
-//     var companyId = req.param.companyId;
-//     Party.find({place: companyId},function (err, pt) {
-//         if(err){
-//             res.redirect('err');
-//         }else{
-//             res.redirect('sucess' + pt);
-//         }
-//     })
-// });
-
 router.get('/:partyCode', function(req, res){
-    var partyCode = req.param.partyCode;
+    var partyCode = req.params.partyCode;
     Party.findOne({code: partyCode},function (err, pt) {
         if(err){
             res.redirect('err');
         }else{
-            pt.userInParty = pt.users.indexOf("someString") > -1;
+
             res.redirect('sucess' + pt);
         }
     });
