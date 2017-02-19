@@ -16,8 +16,8 @@
 
                                 <div class="join-vertical-text" style="margin-top: 10px">
                                     <h5 class="join-vertical-text"><%- company.address %></h5>
-                                    <h5 class="join-vertical-text"><%- company.city ? company.city.nome : '' %> - <%- company.city.state ? company.city.state.nome : ''%></h5>
-                                    <h5>83 3322 2245</h5>
+                                    <h5 class="join-vertical-text"><%- company.city._doc.nome %> - <%- company.city._doc.state.nome %></h5>
+                                    <h5>-</h5>
                                 </div>
 
                                 <h4 style="margin-top: 30px"><%- company.description %></h4>
