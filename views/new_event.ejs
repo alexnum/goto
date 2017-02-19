@@ -1,0 +1,174 @@
+<% include layout_start %>
+
+<div class="wrapper wrapper-content">
+    <div class="container">
+        <div class="wrapper wrapper-content animated fadeInDown ">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div class="ibox-title">
+                            <h5>Novo Evento</h5>
+                        </div>
+                        <form id="formNewEvent" method="POST" action="/site/event">
+                        <div class="ibox-content">
+                            <div id="wizard">
+                                <h1>Opções</h1>
+                                <div class="step-content">
+                                    <h2 style="margin-left: 27%; margin-bottom: 5%;">Selecione uma das opções do estabelecimento</h2>
+                                    <div class="col-lg-10 text-center" style="margin-left: 11%; overflow-y: scroll; max-height: 400px; ">
+                                        <table class="table table-hover table-event" id="tableItem">
+                                            <tbody>
+                                            <% for (var i in items) { %>
+                                                <tr class="cpItem" idx="<%= items[i]._id %>">
+                                                    <td class="project-title" style="max-width: 360px;">
+                                                        <a style="font-size: 20px;"><%= items[i].name %></a>
+                                                        <br/>
+                                                        <small style="font-size: 100%"><%= items[i].desc %></small>
+                                                    </td>
+                                                    <td class="project-completion" value="<%= items[i].price %>">
+                                                        <h3>R$ <%= items[i].price %></h3>
+                                                    </td>
+                                                </tr>
+                                            <%}%>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <h1>Dados do evento</h1>
+                                <div class="step-content">
+                                    <div class="text-center m-t-md">
+                                        <div class="col-lg-8" style="margin-left: 20%; margin-top:-3%">
+                                            <!--<div class="form-group">-->
+                                                <!--<label style="margin-left: -81%">Tipo do Evento</label>-->
+                                                <!--<select class="form-control m-b" name="account" style="cursor: pointer;">-->
+                                                    <!--<option>Público</option>-->
+                                                    <!--<option>Privado</option>-->
+                                                <!--</select>-->
+                                            <!--</div>-->
+                                            <div class="form-group">
+                                                <label style="margin-left: -81%">Nome do Evento</label>
+                                                <input id="userName" name="name" type="text" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label style="margin-left: -83%">Data do Evento</label>
+                                                <input id="date" name="date" type="text" class="form-control" >
+                                            </div>
+                                            <div class="form-group">
+                                                <label style="margin-left: -83%">Hora do Evento</label>
+                                                <input id="time" name="hour" type="text" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label style="margin-left: -77%">Quantidade Máxima</label>
+                                                <input id="userName" name="capacity" type="number" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label style="margin-left: -70%">Valor Ḿínimo (Por Pessoa)</label>
+                                                <input id="userName" name="minValue" type="number" class="form-control">
+                                            </div>
+                                            <!--<div class="form-group">-->
+                                                <!--<label style="margin-left: -95%">Tags</label>-->
+                                                <!--<input id="userName" name="userName" type="text" class="form-control">-->
+                                            <!--</div>-->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <h1>Confirmação</h1>
+                                <div class="step-content">
+                                    <div class="text-center m-t-md">
+                                        <h2>Dados do Evento</h2>
+                                        <div class="col-lg-8" style="margin-left: 17%; margin-top: 3%; ">
+                                            <div class="contact-box center-version">
+
+                                                <h3 class="m-b-xs"><strong>Pizza com amigos</strong></h3>
+
+                                                <div class="font-bold"><i class="fa fa-map-marker"></i> <a href="#">Pizzarela</a></div>
+                                                </br>
+                                                <ul style="margin-bottom: 2%;"><h4><strong>Codigo:</strong><h1 id="codePlace"> </h1></h4></ul>
+                                                <ul><h4><strong>Data:</strong> 20/03/2017</h4></ul>
+                                                <ul><h4><strong>Hora:</strong> 20:00</h4></ul>
+                                                <ul><h4><strong>Quantidade Máxima(Pessoas):</strong> 3</h4></ul>
+                                                <ul><h4><strong>Quantidade Mínimo(Por Pessoa):</strong> R$ 20,00</h4></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .selected{
+        background-color: #3d4d5d;
+    }
+    .selected:hover{
+        background-color: #3d4d5d !important;
+    }
+</style>
+
+
+<script>
+            $(document).ready(function() {
+                var code = Math.random().toString(36).substring(12).toUpperCase();
+                var place = '<%= companyId %>';
+                $("#codePlace").text(code);
+
+                $("#wizard").steps({
+                    onFinished: function (event, currentIndex) {
+                        var form = $('#formNewEvent');
+                        var inputItem = $("<input>")
+                            .attr("type", "hidden")
+                            .attr("name", "item").val($(".cpItem").attr('idx'));
+                        var inputCode = $("<input>")
+                            .attr("type", "hidden")
+                            .attr("name", "code").val(code);
+                        var inputPlace = $("<input>")
+                            .attr("type", "hidden")
+                            .attr("name", "place").val(place);
+                        var inputValue = $("<input>")
+                            .attr("type", "hidden")
+                            .attr("name", "totalValue").val($(".cpItem .project-completion").attr("value"));
+
+                        $('#formNewEvent').append($(inputCode));
+                        $('#formNewEvent').append($(inputItem));
+                        $('#formNewEvent').append($(inputPlace));
+                        $('#formNewEvent').append($(inputValue));
+                        // Submit form input
+                        form.submit();
+                    },
+                    onStepChanged: function(ev, i1, i2){
+                        $("#date").mask("00/00/0000", {placeholder: "__/__/____"});
+                        $("#time").mask("00:00", {placeholder: "00:00"});
+                    },
+                    labels: {
+                        next: "Próximo",
+                        previous: "Anterior",
+                        finish: "Finalizar"
+                    }
+                });
+                $('.cpItem').click(function(self){
+                    $('.cpItem').removeClass("selected");
+                    $(this).addClass("selected");
+                });
+
+                $('.tagsinput').tagsinput({
+                    tagClass: 'label label-primary'
+                });
+
+                $('.i-checks').iCheck({
+                    checkboxClass: 'icheckbox_square-green',
+                    radioClass: 'iradio_square-green',
+                });
+            });
+
+        </script></div>
+
+<% include layout_end %>

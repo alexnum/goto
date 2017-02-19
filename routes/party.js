@@ -4,6 +4,7 @@
 
 var router = require('express').Router();
 var mongoose = require('mongoose');
+var moment = require("moment");
 
 var User = mongoose.model('User');
 var Party = mongoose.model('Party');
@@ -16,6 +17,9 @@ router.post('/', function(req, res){
     var party = req.body;
     party.owner = req.reqUser._id;
     party.users = [req.reqUser._id];
+    party.currentValue = 0;
+    var evMoment = moment(party.date + " " + party.hour, "DD/MM/YYYY hh:mm");
+    party.date = evMoment.toDate();
     new Party(party).save(function(err, ad){
         if(err){
             res.redirect('err');
@@ -154,7 +158,7 @@ router.post('/:id', function (req, res) {
 router.get('/new', function (req, res) {
     var companyId = req.query.companyId;
     MenuItem.find({company: companyId}, function(err, items){
-      res.render('new_event', {items: items, companyId: companyId, user: reqUser})
+      res.render('new_event', {items: items, companyId: companyId, user: req.reqUser})
     });
 });
 
