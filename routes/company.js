@@ -43,7 +43,7 @@ router.get('/:companyId', function (req, res) {
   var companyId = req.params.companyId;
   Company.find({
     _id: companyId
-  }, function (err, company) {
+  }).populate('parties').exec(function (err, company) {
     if (err) {
       res.redirect('err');
     } else {
