@@ -180,4 +180,13 @@ app.listen(port, function() {
     // });
 });
 
+updateToken = function (user, req, res) {
+  var tk = {};
+  var tokenUser = user;
+  tk._doc = tokenUser;
+  var token = jwt.sign(tk, req.app.get('superSecret'), {
+    expiresInMinutes: 43200000 // expires in 24 hours
+  });
 
+  res.cookie('x-access-token', token, {maxAge: 90000000, httpOnly: true});
+}

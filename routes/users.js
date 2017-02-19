@@ -93,7 +93,7 @@ router.get('/events/closed', function (req, res) {
 });
 
 router.get('/account', function (req, res) {
-  User.find({_id: req.reqUser._id}).populate('cards').exec(function (err, users) {
+  User.find({_id: req.reqUser._id}).populate('cards').populate('city').exec(function (err, users) {
     if (err) {
       res.redirect('err');
     } else {
@@ -139,7 +139,7 @@ router.post('/edit', function (req, res) {
 
 router.post('/account/founds/add', function (req, res) {
   var founds = req.body.founds;
-  User.findOne({_id: req.reqUser._id}, function (err, user) {
+  User.findOne({_id: req.reqUser._id}).populate('city').exec(function (err, user) {
     if (err) {
       res.redirect("err");
     } else {
@@ -149,6 +149,7 @@ router.post('/account/founds/add', function (req, res) {
         if (err) {
           res.redirect(err);
         } else {
+          updateToken(user, req, res);
           res.redirect('/site/user/account')
         }
       })
