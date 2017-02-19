@@ -90,11 +90,11 @@ router.get('/events/closed', function (req, res) {
 });
 
 router.get('/account', function (req, res) {
-  User.find({_id: req.reqUser._id}).populate('cards').exec(function (err, user) {
+  User.find({_id: req.reqUser._id}).populate('cards').exec(function (err, users) {
     if (err) {
       res.redirect('err');
     } else {
-
+      var user = users[0];
       if (_.isArray(user.cards)) {
         user.cards.map(function (card) {
           card._doc.lastDigits = card.number.slice(-2);
