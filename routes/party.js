@@ -10,17 +10,18 @@ var Party = mongoose.model('Party');
 var Company = mongoose.model('Company');
 var Contribuition = mongoose.model('Contribuition');
 
-router.post('/', function (req, res) {
-  var party = req.body();
-  party.owner = req.reqUser._id;
-  party.users = [req.reqUser._id];
-  new Party(party).save(function (err) {
-    if (err) {
-      res.redirect('err');
-    } else {
-      res.redirect('/');
-    }
-  });
+
+router.post('/', function(req, res){
+    var party = req.body;
+    party.owner = req.reqUser._id;
+    party.users = [req.reqUser._id];
+    new Party(party).save(function(err, ad){
+        if(err){
+            res.redirect('err');
+        }else{
+            res.redirect('/');
+        }
+    });
 });
 
 router.get('/filter', function (req, res) {

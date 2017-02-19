@@ -107,7 +107,7 @@ router.get('/account', function (req, res) {
 });
 
 router.post('/edit', function (req, res) {
-  var updatedUser = req.body();
+  var updatedUser = req.body;
   User.update(updatedUser, {_id: req.reqUser._id}, {}, function (err, num) {
     if (err) {
       res.redirect('err');
@@ -118,7 +118,7 @@ router.post('/edit', function (req, res) {
 });
 
 router.post('/founds/add', function (req, res) {
-  var founds = req.body().founds;
+  var founds = req.body.founds;
   User.find({_id: req.reqUser._id}, function (err, user) {
     if (err) {
       res.redirect("err");
