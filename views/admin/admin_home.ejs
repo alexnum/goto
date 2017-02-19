@@ -1,4 +1,4 @@
-<% include layout_start %>
+<% include ../layout_start %>
 
 <div class="wrapper wrapper-content">
     <div class="container">
@@ -14,13 +14,17 @@
 
             <input class="typeahead form-control">
             <label>Métodos de pagamento de crédito</label>
-            {{#each payaments.credit}}
-                <input type="checkbox" class="form-check-input" name="payamentMethos" value="{{_id}}"> {{name}}<br>
-            {{/each}}
+            <% for (var i in payaments.credit) {
+                    var credit = payaments.credit[i];
+             %>
+                <input type="checkbox" class="form-check-input" name="payamentMethos" value="<%- credit._id %>"> <%- credit.name %> <br>
+            <%}%>
             <label>Métodos de pagamento de débito</label>
-            {{#each payaments.debit}}
-                <input type="checkbox" class="form-check-input" name="payamentMethos" value="{{_id}}"> {{name}}<br>
-            {{/each}}
+            <% for (var i in payaments.debit) {
+                var debit = payaments.debit[i];
+            %>
+                <input type="checkbox" class="form-check-input" name="payamentMethos" value="<%- debit._id %>"> <%- debit.name %><br>
+            <%}%>
             <input type="text" name="phoneNumber" class="form-control input-sm" placeholder="Telefone"/>
             <div class="form-group">
                 <label for="selectCategory">Selecione a categoria</label>
@@ -135,4 +139,4 @@
     });
 </script>
 
-<% include layout_end %>
+<% include ../layout_end %>
