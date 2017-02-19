@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GoTo - Para onde você vai hoje?</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/plugins/ionRangeSlider/ion.rangeSlider.css" rel="stylesheet">
+    <link href="css/plugins/ionRangeSlider/ion.rangeSlider.skinHTML5.css" rel="stylesheet">
+    
+
+</head>
+
+<body class="top-navigation">
+
+    <div id="wrapper">
+        <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom white-bg">
+        <nav class="navbar navbar-fixed-top" role="navigation">
+            <div class="navbar-header" style="margin-left: 1%">
+                <span href="#"><img alt="image" src="img/logo.png" style="width: 90px; margin-top: 13%;"/></span>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar" style="margin-left: 9%">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a role="button" href="home.html"> Início</a>
+                    </li>
+                    <li class="dropdown">
+                        <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Eventos <span class="caret"></span></a>
+                        <ul role="menu" class="dropdown-menu">
+
+                            <li><a href="events.html">Participando</a></li>
+                            <li><a href="events.html">Meus Eventos</a></li>
+                            <li><a href="events.html">Fechados</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a role="button" href="my_account.html"> Minha Conta</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-top-links navbar-right">
+                     <li>
+                        <a href="">
+                            R$ 120,00
+                        </a>
+                     </li>
+                     <li>
+                        <a href="">
+                            <i class="fa fa-map-marker"></i> Campina Grande, PB
+                        </a>
+                    </li>
+                    <li>
+                        <a href="login.html">
+                            <i class="fa fa-sign-out"></i> Sair
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        </div>
+        <div class="wrapper wrapper-content">
+            <div class="container">
+                <div class="wrapper wrapper-content animated fadeInUp">
+                    <div class="row">
+                    <div class="col-lg-12">
+                     <div class="ibox-content" style="min-height: 500px;">
+                    <div class="ibox" style="max-width: 400px; margin-left: 30%; margin-top: 5%;">
+                        <h2 style="margin-left: 20%; margin-bottom: 5%;">Valor de Contribuição</h2>
+                        <div id="ionrange_150"></div>
+                    </div>
+                    <div class="ibox" style="max-width: 400px; margin-left: 30%; margin-top: 5%;">
+                        <div class="form-group">
+                                <h2 style="margin-left: 20%; margin-bottom: 5%;">Forma de Pagamento</h2>
+                                <select class="form-control m-b" name="account" style="cursor: pointer;">
+                                        <option>Saldo GoTo</option>
+                                        <option>Cartão Visa 6508********</option>
+                                </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary block m-b" style="width: 400px; margin-left: 30%; margin-top: 5%;">Participar</button>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="footer">
+            <div>
+                GoTo &copy; 2017
+            </div>
+        </div>
+
+        </div>
+        </div>
+
+
+
+    <!-- Mainly scripts -->
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+
+    <!-- Flot -->
+    <script src="js/plugins/flot/jquery.flot.js"></script>
+    <script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="js/plugins/flot/jquery.flot.resize.js"></script>
+
+    <!-- ChartJS-->
+    <script src="js/plugins/chartJs/Chart.min.js"></script>
+
+    <!-- Peity -->
+    <script src="js/plugins/peity/jquery.peity.min.js"></script>
+    <!-- Peity demo -->
+    <script src="js/demo/peity-demo.js"></script>
+
+    <!-- IonRangeSlider -->
+    <script src="js/plugins/ionRangeSlider/ion.rangeSlider.min.js"></script>
+
+
+    <script>
+        $(document).ready(function() {
+            $("#ionrange_150").ionRangeSlider({
+                min: 1,
+                max: 100,
+                prefix: "R$"
+            });
+        });
+    </script>
+
+</body>
+
+</html>
