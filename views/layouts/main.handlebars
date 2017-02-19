@@ -1,28 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-      <script src="/jquery/dist/jquery.min.js"></script>
-      <script src="/depedentSelect.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
-      <script src="/jquery-mask-plugin/dist/jquery.mask.js"></script>
-      <script src="/typeahead.js/dist/bloodhound.js"></script>
-      <script src="/typeahead.js/dist/typeahead.bundle.js"></script>
-      <script src="/typeahead.js/dist/typeahead.jquery.js"></script>
+<head>
     <meta charset="utf-8">
-    <title>Admin HOME!</title>
 
-    <link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!--<link href="css/style.css" rel="stylesheet">-->
-      <link href="/stylesheets/animate.css" rel="stylesheet">
-      <link href="/stylesheets/style.css" rel="stylesheet">
-  </head>
-  <body>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/plugins/slick/slick.css" rel="stylesheet">
+    <link href="/css/plugins/slick/slick-theme.css" rel="stylesheet">
+    <link href="/css/plugins/steps/jquery.steps.css" rel="stylesheet">
 
-    <div class="container-fluid">
-        {{{body}}}
-    </div>
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/plugins/chosen/bootstrap-chosen.css" rel="stylesheet">
+
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+    <!-- Steps -->
+    <script src="/js/plugins/steps/jquery.steps.min.js"></script>
+
+    <!-- Select2 -->
+    <script src="/js/plugins/select2/select2.full.min.js"></script>
+
+    <!-- Input Mask-->
+    <script src="/js/plugins/jasny/jasny-bootstrap.min.js"></script>
+
+    <!-- Switchery -->
+    <script src="/js/plugins/switchery/switchery.js"></script>
+
+    <script src="/typeahead.js/dist/bloodhound.js"></script>
+    <script src="/typeahead.js/dist/typeahead.bundle.js"></script>
+    <script src="/typeahead.js/dist/typeahead.jquery.js"></script>
+
+    <script src="/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="/js/plugins/pace/pace.min.js"></script>
+
+    <!-- Flot -->
+    <script src="/js/plugins/flot/jquery.flot.js"></script>
+    <script src="/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="/js/plugins/flot/jquery.flot.resize.js"></script>
+
+    <script src="/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="/js/plugins/chosen/chosen.jquery.js"></script>
+
+    <!-- ChartJS-->
+    <script src="/js/plugins/chartJs/Chart.min.js"></script>
+
+    <!-- Peity -->
+    <script src="/js/plugins/peity/jquery.peity.min.js"></script>
+    <!-- Peity demo -->
+    <script src="/js/demo/peity-demo.js"></script>
+
+    <script src="/depedentSelect.js"></script>
+    <script src="/jquery-mask-plugin/dist/jquery.mask.js"></script>
+
+    <title>GoTo</title>
+
+    {{#if user}}
+        <style>
+            .vou {
+                text-align: center;
+                background-color: #1ab394;
+                color: #fff;
+                padding-top: 0 !important;
+                padding-bottom: 0 !important;
+                width: 10px;
+            }
+
+            .nao-vou {
+                text-align: center;
+                background-color: #337ab7;
+                color: #fff;
+                padding-top: 0 !important;
+                padding-bottom: 0 !important;
+                width: 10px;
+                color: #fff;
+            }
+
+            .progress-bar-blue {
+                background-color: #337ab7;
+            }
+
+            .btn-blue, .btn-blue:hover, .btn-blue:active, .btn-blue:focus {
+                background-color: #337ab7;
+                color: white;
+            }
+
+            .vou tr {
+                display: block;
+            }
+
+            .project-title a {
+                font-size: 20px;
+            }
+
+            .project-title small {
+                font-size: 100%;
+            }
+        </style>
+    {{/if}}
+</head>
+
+{{#if user}}
+    <body class="top-navigation pace-done">
+{{else}}
+    <body class="gray-bg">
+{{/if}}
 
 
-    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
-  </body>
+<div>
+    {{#if user}}
+            <nav class="navbar navbar-fixed-top navbar-static-top" role="navigation">
+                <div class="navbar-header" style="margin-left: 1%">
+                    <span href="home.html"><img alt="image" src="/logo.png" style="width: 90px; margin-top: 13%;"/></span>
+                </div>
+                <div class="navbar-collapse collapse" id="navbar" style="margin-left: 9%">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a role="button" href="home.html"> Início</a>
+                        </li>
+                        <li class="dropdown">
+                            <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Eventos <span class="caret"></span></a>
+                            <ul role="menu" class="dropdown-menu">
+                                <li><a href="events.html">Participando</a></li>
+                                <li><a href="events.html">Meus Eventos</a></li>
+                                <li><a href="events.html">Fechados</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a aria-expanded="false" role="button" href="my_account.html"> Minha Conta</a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <a href="">
+                                R$ 120,00
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fa fa-map-marker"></i> Campina Grande, PB
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/site/user/logout">
+                                <i class="fa fa-sign-out"></i> Sair
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+    {{/if}}
+    {{{body}}}
+</div>
+
+
+<script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
 </html>

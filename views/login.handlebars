@@ -1,19 +1,19 @@
 <div class="middle-box text-center loginscreen animated fadeInDown">
     <div>
-        <img alt="image" class="img-thumbnail" src="img/profile_small.jpg"  style="width: 150px;" />
-        <h3>Bem vindo(a)</h3>
-        <!--Continually expanded and constantly improved Inspinia Admin Them (IN+)-->
-        </p>
-        <form class="m-t" method="post" action="authenticate">
+        <img alt="image" src="logo.png"  style="width: 300px;" />
+        <h3 style="margin-top: 20%">Bem vindo(a) ao GoTo</h3>
+        <p style="margin-bottom: 10%">Para onde você vai hoje?</p>
+        <form class="m-t" role="form" method="post" action="authenticate">
             <div class="form-group">
-                <input type="text" name="username" class="form-control input-sm" placeholder="Username" />
+                <input class="form-control" name="username" placeholder="Usuário">
             </div>
             <div class="form-group">
-                <input type="password" name="password" class="form-control input-sm" placeholder="Password" />
+                <input type="password" name="password" class="form-control" placeholder="Senha">
             </div>
             <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+            <p class="text-muted text-center"><small>Não é cadastrado?</small></p>
+            <a class="btn btn-sm btn-white btn-block" href="/register">Criar Conta</a>
         </form>
-        <button class="form-control btn btn-primary btn-md"><a href="/register">Registrar </a> </button>
-        <p class="m-t"> <small>CGhub &copy; 2017</small> </p>
+        <p class="m-t"> <small>GoTo &copy; 2017</small> </p>
     </div>
-    </div>
+</div>

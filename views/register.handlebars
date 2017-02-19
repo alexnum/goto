@@ -1,8 +1,143 @@
+<div id="wrapper">
+    <div class="wrapper wrapper-content animated fadeInDown loginscreen col-lg-8"
+         style="margin-left: 18%; margin-top:2%;">
+        <div class="row">
+            <div class="col-lg-12">
+                {{#if error}}
+                    <div class="alert alert-danger">{{error.message}}</div>
+                {{/if}}
+
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5>Cadastro</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div id="wizard">
+                            <h1>Localização</h1>
+                            <div class="step-content">
+                                <div class="col-lg-8 text-center" style="margin-left: 20%">
+                                    <h2>Informe sua localização</h2>
+                                    <div class="form-group">
+                                        <label style="margin-left: -90%">Estado</label>
+                                        <input id="userName_n" name="userName" type="text" class="form-control required">
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="margin-left: -90%">Cidade</label>
+                                        <input id="password_n" name="password" type="text" class="form-control required">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h1>Conta</h1>
+                            <div class="step-content">
+                                <div class="text-center m-t-md">
+                                    <div class="col-lg-8 text-center" style="margin-left: 20%; margin-top:-3%">
+                                        <h2>Informe sua nova conta</h2>
+                                        <div class="form-group">
+                                            <label style="margin-left: -90%">E-mail *</label>
+                                            <input id="userName" name="userName" type="text"
+                                                   class="form-control required">
+                                        </div>
+                                        <div class="form-group">
+                                            <label style="margin-left: -90%">Senha *</label>
+                                            <input id="password" name="password" type="text"
+                                                   class="form-control required">
+                                        </div>
+                                        <div class="form-group">
+                                            <label style="margin-left: -74%">Confirme a senha *</label>
+                                            <input id="confirm" name="confirm" type="text"
+                                                   class="form-control required">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h1>Fim</h1>
+                            <div class="step-content">
+                                <div class="text-center m-t-md">
+                                    <h2>Usuário cadastrado</h2>
+                                    <p>
+                                        Obrigado!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#wizard").steps();
+
+        $("#form").steps({
+            bodyTag: "fieldset",
+            onStepChanging: function (event, currentIndex, newIndex) {
+                // Always allow going backward even if the current step contains invalid fields!
+                if (currentIndex > newIndex) {
+                    return true;
+                }
+
+                // Forbid suppressing "Warning" step if the user is to young
+                if (newIndex === 3 && Number($("#age").val()) < 18) {
+                    return false;
+                }
+
+                var form = $(this);
+
+                // Clean up if user went backward before
+                if (currentIndex < newIndex) {
+                    // To remove error styles
+                    $(".body:eq(" + newIndex + ") label.error", form).remove();
+                    $(".body:eq(" + newIndex + ") .error", form).removeClass("error");
+                }
+
+                // Disable validation on fields that are disabled or hidden.
+                form.validate().settings.ignore = ":disabled,:hidden";
+
+                // Start validation; Prevent going forward if false
+                return form.valid();
+            },
+            onStepChanged: function (event, currentIndex, priorIndex) {
+                // Suppress (skip) "Warning" step if the user is old enough.
+                if (currentIndex === 2 && Number($("#age").val()) >= 18) {
+                    $(this).steps("next");
+                }
+
+                // Suppress (skip) "Warning" step if the user is old enough and wants to the previous step.
+                if (currentIndex === 2 && priorIndex === 3) {
+                    $(this).steps("previous");
+                }
+            },
+            onFinishing: function (event, currentIndex) {
+                var form = $(this);
+
+                // Disable validation on fields that are disabled.
+                // At this point it's recommended to do an overall check (mean ignoring only disabled fields)
+                form.validate().settings.ignore = ":disabled";
+
+                // Start validation; Prevent form submission if false
+                return form.valid();
+            },
+            onFinished: function (event, currentIndex) {
+                var form = $(this);
+
+                // Submit form input
+                form.submit();
+            }
+        });
+    });
+
+</script>
+<!--
 <div class="row">
     <div class="col-md-offset-4 col-md-4">
-        {{#if error}}
-            <div class="alert alert-danger">{{error.message}}</div>
-        {{/if}}
+
         <form class="form-login" method="post" action="register">
             <input type="text" name="name" class="form-control input-sm" placeholder="Nome" />
             <input type="text" name="login" class="form-control input-sm" placeholder="Login" />
@@ -11,14 +146,4 @@
             <button type="submit" class="form-control btn btn-primary btn-md">Registrar <i class="fa fa-sign-in"></i></a>
         </form>
     </div>
-</div>
-
-<style>
-    .alert {
-        margin: 12pt;
-        margin-left: 22pt;
-    }
-    .form-control {
-        margin: 6pt;
-    }
-</style>
+</div>-->

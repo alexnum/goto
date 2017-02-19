@@ -1,25 +1,184 @@
-<div class="row">
-    <div id="navbar" class="navbar-collapse collapse navbar-inverse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="/">HomeItem1</a></li>
-            <li><a href="/">HomeMenuItem2</a></li>
-            <li><a href="/">HomeMenuItem3</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-              <li><a> Bem vindo, {{user.name}}!</a></li>
-            <li><a href="/site/user/logout">Sair</a></li>
-          </ul>
+<div id="wrapper">
+    <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom white-bg">
+            <nav class="navbar navbar-fixed-top" role="navigation">
+                <div class="navbar-header" style="margin-left: 1%">
+                    <span href="#"><img alt="image" src="/logo.png" style="width: 90px; margin-top: 13%;"/></span>
+                </div>
+                <div class="navbar-collapse collapse" id="navbar" style="margin-left: 9%">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a role="button" href="home.html"> Início</a>
+                        </li>
+                        <li class="dropdown">
+                            <a aria-expanded="false" role="button" href="#" class="dropdown-toggle"
+                               data-toggle="dropdown"> Eventos <span class="caret"></span></a>
+                            <ul role="menu" class="dropdown-menu">
+
+                                <li><a href="events.html">Participando</a></li>
+                                <li><a href="events.html">Meus Eventos</a></li>
+                                <li><a href="events.html">Fechados</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a aria-expanded="false" role="button" href="#" class="dropdown-toggle"
+                               data-toggle="dropdown"> Minha Conta</a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <a href="">
+                                R$ 120,00
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fa fa-map-marker"></i> Campina Grande, PB
+                            </a>
+                        </li>
+                        <li>
+                            <a href="login.html">
+                                <i class="fa fa-sign-out"></i> Sair
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="wrapper wrapper-content">
+            <div class="container">
+                <div class="wrapper wrapper-content animated fadeInUp">
+
+                    <div class="ibox">
+                        <div class="ibox-title">
+                            <h5>Estabelecimentos</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="row m-b-sm m-t-sm">
+                                <div class="col-md-2">
+                                    <div>
+                                        <select class="form-control m-b">
+                                            <option>Categoria</option>
+                                            <option>Festa</option>
+                                            <option>Música</option>
+                                            <option>Esporte</option>
+                                            <option>Cinema</option>
+                                            <option>Outros</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="input-group"><input style="height: 35px;" type="text"
+                                                                    placeholder="Encontre o estabelecimento..."
+                                                                    class="input-sm form-control"> <span
+                                            class="input-group-btn">
+                                        <button type="button" class="btn btn-sm btn-primary" style="height: 35px;"> Buscar</button> </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project-list">
+
+                                <table class="table table-hover">
+                                    <tbody>
+                                    <tr>
+                                        <td class="project-status">
+                                            <span href="#"><img alt="image" src="/mc.png" class="img-circle"
+                                                                style="width: 90px; height: 90px; margin-top: 13%;"/></span>
+                                        </td>
+                                        <td class="project-title" style="max-width: 360px;">
+                                            <a href="project_detail.html" style="font-size: 20px;">McDonald's</a>
+                                            <br/>
+                                            <small style="font-size: 100%">McDonald's Corporation é a maior cadeia
+                                                mundial de restaurantes de fast food de hambúrguer, servindo cerca de 68
+                                                milhões de clientes por dia em 119 países através de 35 mil pontos de
+                                                venda
+                                            </small>
+                                        </td>
+                                        <td class="project-completion">
+                                            <p>Rua josé estevão de araujo, 92</p>
+                                        </td>
+                                        <td class="project-actions">
+                                            <a href="#" class="btn btn-white btn-lg">Ver mais </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="project-status">
+                                            <span href="#"><img alt="image" src="/dominos.png" class="img-circle"
+                                                                style="width: 90px; height: 90px; margin-top: 13%;"/></span>
+                                        </td>
+                                        <td class="project-title" style="max-width: 360px;">
+                                            <a href="project_detail.html" style="font-size: 20px;">McDonald's</a>
+                                            <br/>
+                                            <small style="font-size: 100%">McDonald's Corporation é a maior cadeia
+                                                mundial de restaurantes de fast food de hambúrguer, servindo cerca de 68
+                                                milhões de clientes por dia em 119 países através de 35 mil pontos de
+                                                venda
+                                            </small>
+                                        </td>
+                                        <td class="project-completion">
+                                            <p>Rua josé estevão de araujo, 92</p>
+                                        </td>
+                                        <td class="project-actions">
+                                            <a href="#" class="btn btn-white btn-lg">Ver mais </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="project-status">
+                                            <span href="#"><img alt="image" src="/bk.png" class="img-circle"
+                                                                style="width: 90px; height: 90px; margin-top: 13%;"/></span>
+                                        </td>
+                                        <td class="project-title" style="max-width: 360px;">
+                                            <a href="project_detail.html" style="font-size: 20px;">McDonald's</a>
+                                            <br/>
+                                            <small style="font-size: 100%">McDonald's Corporation é a maior cadeia
+                                                mundial de restaurantes de fast food de hambúrguer, servindo cerca de 68
+                                                milhões de clientes por dia em 119 países através de 35 mil pontos de
+                                                venda
+                                            </small>
+                                        </td>
+                                        <td class="project-completion">
+                                            <p>Rua josé estevão de araujo, 92</p>
+                                        </td>
+                                        <td class="project-actions">
+                                            <a href="#" class="btn btn-white btn-lg">Ver mais </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="project-status">
+                                            <span href="#"><img alt="image" src="/sp.png" class="img-circle"
+                                                                style="width: 90px; height: 90px; margin-top: 13%;"/></span>
+                                        </td>
+                                        <td class="project-title" style="max-width: 360px;">
+                                            <a href="project_detail.html" style="font-size: 20px;">McDonald's</a>
+                                            <br/>
+                                            <small style="font-size: 100%">McDonald's Corporation é a maior cadeia
+                                                mundial de restaurantes de fast food de hambúrguer, servindo cerca de 68
+                                                milhões de clientes por dia em 119 países através de 35 mil pontos de
+                                                venda
+                                            </small>
+                                        </td>
+                                        <td class="project-completion">
+                                            <p>Rua josé estevão de araujo, 92</p>
+                                        </td>
+                                        <td class="project-actions">
+                                            <a href="#" class="btn btn-white btn-lg">Ver mais </a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="footer">
+            <div>
+                GoTo &copy; 2017
+            </div>
+        </div>
+
     </div>
 </div>
-
-<style>
-#map {
-    height: 600px;
-}
-.station {
-    margin: 10px;
-}
-.container {
-    margin-top:70px;
-}
-</style>

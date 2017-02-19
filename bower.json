@@ -21,6 +21,7 @@
     "jquery": "^3.1.1",
     "jquery-typeahead": "^2.7.6",
     "typeahead.js": "^0.11.1",
-    "bootstrap3-typeahead": "^4.0.2"
+    "bootstrap3-typeahead": "^4.0.2",
+    "jquery-mask-plugin": "jquery-mask#^1.14.10"
   }
 }
