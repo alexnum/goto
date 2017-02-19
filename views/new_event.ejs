@@ -62,10 +62,10 @@
                                                 <label style="margin-left: -77%">Quantidade Máxima</label>
                                                 <input id="userName" name="capacity" type="number" class="form-control">
                                             </div>
-                                            <div class="form-group">
-                                                <label style="margin-left: -70%">Valor Ḿínimo (Por Pessoa)</label>
-                                                <input id="userName" name="minValue" type="number" class="form-control">
-                                            </div>
+                                            <!--<div class="form-group">-->
+                                                <!--<label style="margin-left: -70%">Valor Ḿínimo (Por Pessoa)</label>-->
+                                                <!--<input id="userName" name="minValue" type="number" class="form-control">-->
+                                            <!--</div>-->
                                             <!--<div class="form-group">-->
                                                 <!--<label style="margin-left: -95%">Tags</label>-->
                                                 <!--<input id="userName" name="userName" type="text" class="form-control">-->
@@ -86,10 +86,8 @@
                                                 <div class="font-bold"><i class="fa fa-map-marker"></i> <a href="#">Pizzarela</a></div>
                                                 </br>
                                                 <ul style="margin-bottom: 2%;"><h4><strong>Codigo:</strong><h1 id="codePlace"> </h1></h4></ul>
-                                                <ul><h4><strong>Data:</strong> 20/03/2017</h4></ul>
-                                                <ul><h4><strong>Hora:</strong> 20:00</h4></ul>
-                                                <ul><h4><strong>Quantidade Máxima(Pessoas):</strong> 3</h4></ul>
-                                                <ul><h4><strong>Quantidade Mínimo(Por Pessoa):</strong> R$ 20,00</h4></ul>
+                                                <ul><h4><strong>Data:</strong> <a id="dateText">20/03/2017</a></h4></ul>
+                                                <ul><h4><strong>Hora:</strong> <a id="timeText">20:00</a></h4></ul>
                                             </div>
                                         </div>
                                     </div>
@@ -147,6 +145,8 @@
                     onStepChanged: function(ev, i1, i2){
                         $("#date").mask("00/00/0000", {placeholder: "__/__/____"});
                         $("#time").mask("00:00", {placeholder: "00:00"});
+                        $('#dateText').text($("#date").val());
+                        $('#timeText').text($("#time").val());
                     },
                     labels: {
                         next: "Próximo",

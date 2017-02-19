@@ -1,0 +1,46 @@
+<% include layout_start %>
+
+<div class="wrapper wrapper-content">
+    <div class="container">
+        <div class="wrapper wrapper-content animated fadeInUp">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form id="contributeForm" method="POST" action="/site/event/contribute">
+                        <div class="ibox-content" style="min-height: 500px;">
+                            <div class="ibox" style="max-width: 400px; margin-left: 30%; margin-top: 5%;">
+                                <h2 style="margin-left: 20%; margin-bottom: 5%;">Valor de Contribuição</h2>
+                                <input type="text" name="value" id="ionrange_150"></input>
+                            </div>
+                            <div class="ibox" style="max-width: 400px; margin-left: 30%; margin-top: 5%;">
+                                <div class="form-group">
+                                    <h2 style="margin-left: 20%; margin-bottom: 5%;">Forma de Pagamento</h2>
+                                    <select class="form-control m-b" name="card" style="cursor: pointer;">
+                                        <option value="goto">Saldo GoTo</option>
+                                        <option value="card">Cartão Visa 6508********</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <input type="hidden" name="partyCode" value="<%= party.code %>">
+                            <button id="btSend" class="btn btn-primary block m-b" style="width: 400px; margin-left: 30%; margin-top: 5%;">Participar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+    $(document).ready(function() {
+        $("#ionrange_150").ionRangeSlider({
+            min: 1,
+            max: <%= party._doc.maxToDonate%>,
+            prefix: "R$",
+            onFinish: function(){
+                console.log("finish!");
+            }
+        });
+    });
+</script>
+
+<% include layout_end %>

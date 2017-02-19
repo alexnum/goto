@@ -20,11 +20,21 @@ router.post('/', function(req, res){
     party.currentValue = 0;
     var evMoment = moment(party.date + " " + party.hour, "DD/MM/YYYY hh:mm");
     party.date = evMoment.toDate();
-    new Party(party).save(function(err, ad){
+    new Party(party).save(function(err, pt){
         if(err){
             res.redirect('err');
         }else{
-            res.redirect('/');
+          Company.findOne({_id: pt.place}, function(err, comp){
+
+            comp.parties.push(pt._id);
+            comp.save(function(err, compOk){
+              if(err){
+                res.send('err');
+              }else{
+                res.redirect('/');
+              }
+            });
+          });
         }
     });
 });
@@ -109,36 +119,81 @@ router.delete('/:ptCode/kick/:userId', function (req, res) {
 });
 
 router.post('/contribute', function (req, res) {
-  var contribuition = req.body();
+  var contribuition = req.body;
   contribuition.user = req.reqUser._id;
   contribuition.confirmed = false;
   var partyCode = contribuition.partyCode;
-  new Contribuition(contribuition).save(function (err, contri) {
-    if (err) {
-      res.redirect('err');
-    } else {
-      Party.findOneAndUpdate.findByIdAndUpdate(
-        {code: partyCode},
-        {
-          $push: {"contributions": contri._id},
-          $push: {"users": contri.user}
-        },
-        {safe: true, upsert: true},
-        function (err, party) {
-          if (err) {
-            res.redirect('err');
-          } else {
-            res.redirect('success');
-          }
+  if(contribuition.card && contribuition.card == 'goto'){
+    contribuition.card = undefined;
+    User.findOne({_id: req.reqUser}, function(err, me){
+      if(err){
+        res.send(err);
+      }else{
+        me.walletBalance = me.walletBalance - contribuition.value;
+        if(me.walletBalance < 0){
+          res.send('Você não possui saldo suficiente em sua carteira');
+        }else{
+          me.save(function(err, me2){
+            if(err){
+              res.send(err);
+            }else{
+                new Contribuition(contribuition).save(function (err, contri) {
+                    if (err) {
+                        res.redirect('err');
+                    } else {
+                        Party.findOneAndUpdate(
+                            {code: partyCode},
+                            {
+                                $push: {"contributions": contri._id},
+                                $addToSet: {"users": contri.user},
+                                $inc: {"currentValue": contri.value}
+                            },
+                            {safe: true, upsert: true},
+                            function (err, party) {
+                                if (err) {
+                                    res.redirect('err');
+                                } else {
+                                    res.redirect('/');
+                                }
+                            }
+                        );
+                    }
+                });
+            }
+          })
         }
-      );
-    }
-  });
+      }
+    });
+  }else{
+      new Contribuition(contribuition).save(function (err, contri) {
+          if (err) {
+              res.redirect('err');
+          } else {
+              Party.findOneAndUpdate.findByIdAndUpdate(
+                  {code: partyCode},
+                  {
+                      $push: {"contributions": contri._id},
+                      $push: {"users": contri.user}
+                  },
+                  {safe: true, upsert: true},
+                  function (err, party) {
+                      if (err) {
+                          res.redirect('err');
+                      } else {
+                          res.redirect('success');
+                      }
+                  }
+              );
+          }
+      });
+  }
+
 });
 
 router.get('/contribute/:partyCode', function (req, res) {
     var ptCode = req.params.partyCode;
     Party.findOne({code: ptCode}, function(err, pt){
+      pt._doc.maxToDonate = pt.totalValue - pt.currentValue;
       res.render('participar', {user: req.reqUser, party: pt});
     });
 });
@@ -173,7 +228,7 @@ router.get('/:partyCode', function (req, res) {
     if (err) {
       res.redirect('err');
     } else {
-      res.render('event_details', {user: req.reqUser, party: pt})
+      res.render('event_details', {user: req.reqUser, party: pt});
     }
   });
 });

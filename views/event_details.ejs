@@ -31,7 +31,7 @@
 
                                     <div class="join-vertical-text" style="margin-top: 10px">
                                         <h5 class="join-vertical-text"><%- party.place.address %></h5>
-                                        <h5 class="join-vertical-text"><%- party.place.city._doc.nome %> - <%- party.place.city.state.nome %></h5>
+                                        <h5 class="join-vertical-text"><%- party._doc.place.city._doc.nome %> - <%- party._doc.place._doc.city._doc.state._doc.nome %></h5>
                                         <h5>-</h5>
                                     </div>
 
@@ -73,7 +73,7 @@
                         <div class="ibox">
                             <div class="ibox-title">
                                 <h5>Pessoas que participarão</h5>
-                                <h6 class="pull-right" style="margin-top: 3px"><%- party.contribuitons ? party.contribuitons.length : 0 %> pessoa (s)</h6>
+                                <h6 class="pull-right" style="margin-top: 3px"><%- party.users ? party.users.length : 0 %> pessoa (s)</h6>
                             </div>
                             <div class="ibox-content">
                                 <div class="table-responsive" style="max-height: 400px">
@@ -108,7 +108,7 @@
                             <table class="col-md-12">
                                 <tr>
                                     <td><h2>Pessoas</h2></td>
-                                    <td style="text-align: right"><h2>&nbsp;&nbsp;<%- (party.contribuitions ? party.contribuitions.length : 0) %>/<%- party.capacity %></h2></td>
+                                    <td style="text-align: right"><h2>&nbsp;&nbsp;<%- (party.users ? party.users.length : 0) %>/<%- party.capacity %></h2></td>
                                 </tr>
                                 <tr>
                                     <td><h2>Total</h2></td>
@@ -125,7 +125,7 @@
                             </table>
 
                             <div class="project-list" style="text-align: center">
-                                <button class="btn btn-lg btn-primary" style="margin-top: 30px">PARTICIPAR</button>
+                                <a href="/site/event/contribute/<%= party.code%>"><button class="btn btn-lg btn-primary" style="margin-top: 30px">PARTICIPAR</button></a>
                             </div>
                         </div>
                     </div>
