@@ -2,7 +2,6 @@ var express = require('express');
 var mongoose = require('mongoose');
 var handlebars = require('express-handlebars');
 var cookieParser = require('cookie-parser');
-var expressLayouts = require('express-ejs-layouts');
 
 var port = process.env.PORT || 5000;
 //var db = 'mongodb://heroku_5qcn5df4:l0imr1m3a4sse3dauep5qj131s@ds033096.mlab.com:33096/heroku_5qcn5df4';
@@ -83,8 +82,6 @@ app.use('/site/card', cardRoute);
 app.use('/site/admin', adminRoute);
 
 app.set('view engine', 'ejs');
-app.use(expressLayouts);
-app.set('views', './views');
 
 app.get('/', function(req, res) {
 
