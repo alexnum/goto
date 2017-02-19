@@ -12,7 +12,8 @@ var companySchema = mongoose.Schema({
     location: { lat: Number, lng: Number },
     phoneNumber: String,
     city: { type: mongoose.Schema.Types.ObjectId, ref: 'City' },
-    category: String
+    category: String,
+    owner: { type: mongoose.Schema.Types.ObjectId, ref: 'City' }
 });
 
 mongoose.model('Company', companySchema);

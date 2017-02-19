@@ -10,6 +10,7 @@ var https = require('https');
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
+var bcrypt = require('bcrypt');
 
 var User = mongoose.model('User');
 var City = mongoose.model('City');
@@ -21,12 +22,19 @@ router.get('/register', function (req, res, next) {
 router.post('/register', function (req, res, next) {
 
   var user = req.body;
-  new User(user).save(user, function(err, usr){
-    if(err){
-      res.render('login', {error: {field: "password", message: "Dados do cadastro inválidos"}});
-    }else{
-      res.render('login', {});
-    }
+  cryptPassword(user.password, function(err, hash){
+     if(err){
+         res.render('login', {error: {field: "password", message: "Dados do cadastro inválidos"}});
+     }else{
+         user.password = hash;
+         new User(user).save(user, function(err, usr){
+             if(err){
+                 res.render('login', {error: {field: "password", message: "Dados do cadastro inválidos"}});
+             }else{
+                 res.render('login', {});
+             }
+         });
+     }
   });
 });
 
@@ -60,18 +68,31 @@ router.post('/authenticate', function (req, res, next) {
   var user = req.body.username;
   var password = req.body.password;
   User.findOne({login: user}).exec(function(err, admin){
-    var ad = {};
-    if(admin != undefined && admin.password == password){
-      ad._doc = admin;
-      var token = jwt.sign(ad, req.app.get('superSecret'), {
-        expiresInMinutes: 43200000 // expires in 24 hours
-      });
-      res.cookie('x-access-token', token, { maxAge: 9000000000, httpOnly: true });
-      //res.redirect(301, '/api/profile');
-      res.redirect('/site/user/home');
-      //res.status(301).send("Redirect");
+    var us = {};
+    if(!admin){
+        res.render('login', {error: {field: "password", message: "Senha inválida"}});
     }else{
-      res.render('login', {error: {field: "password", message: "Senha inválida"}});
+        comparePassword(password, admin.password, function(err, match){
+            if(err){
+                res.render('login', {error: {field: "password", message: "Senha inválida"}});
+            }else{
+                if(match){
+                    us._doc = admin;
+                    var token = jwt.sign(us, req.app.get('superSecret'), {
+                        expiresInMinutes: 43200000 // expires in 24 hours
+                    });
+                    res.cookie('x-access-token', token, { maxAge: 9000000000, httpOnly: true });
+                    //res.redirect(301, '/api/profile');
+                    if(us._doc.role && us._doc.role == 'ADMIN'){
+                        res.redirect('/site/admin/home');
+                    }else{
+                        res.redirect('/site/user/home');
+                    }
+                }else{
+                    res.render('login', {error: {field: "password", message: "Senha inválida"}});
+                }
+            }
+        });
     }
   });
 });

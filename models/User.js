@@ -11,7 +11,8 @@ var userSchema = mongoose.Schema({
   parties: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Party' }],
   cards: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Card' }],
   city: { type: mongoose.Schema.Types.ObjectId, ref: 'City' },
-  walletBalance: Number
+  walletBalance: Number,
+  role: String
 });
 
 mongoose.model('User', userSchema);

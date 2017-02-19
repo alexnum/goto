@@ -63,10 +63,12 @@ router.get('/participating', function (req, res) {
             res.render('err');
         }else{
             var processedParties = parties.map(function(item){
-                preProcessParty(item, req.reqUser._id);
-                return item;
+                var processedItem = preProcessParty(item, req.reqUser._id);
+                return processedItem;
             });
-            res.render('home', {parties: processedParties, type: 'PARTICIPATING'});
+
+            //res.render('home', {parties: processedParties, type: 'PARTICIPATING'});
+            res.send(processedParties);
         }
     });
 });

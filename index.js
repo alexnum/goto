@@ -55,10 +55,7 @@ router.use(function(req, res, next) {
     });
   } else {
     //TODO vai para a tela de erro
-    return res.status(403).send({
-      success: false,
-      message: 'No token provided.'
-    });
+    res.redirect('/');
   }
 });
 
@@ -74,6 +71,7 @@ var userRoute = require('./routes/users');
 var partyRoute = require('./routes/party');
 var companyRoute = require('./routes/company');
 var cardRoute = require('./routes/card');
+var adminRoute = require('./routes/admin');
 
 app.use('/', routes);
 app.use('/site', router);
@@ -81,6 +79,7 @@ app.use('/site/user', userRoute);
 app.use('/site/company', companyRoute);
 app.use('/site/party', partyRoute);
 app.use('/site/card', cardRoute);
+app.use('/site/admin', adminRoute);
 
 app.engine('handlebars', handlebars({
   defaultLayout: 'main',
