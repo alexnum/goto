@@ -77,7 +77,7 @@ app.use('/', routes);
 app.use('/site', router);
 app.use('/site/user', userRoute);
 app.use('/site/company', companyRoute);
-app.use('/site/party', partyRoute);
+app.use('/site/event', partyRoute);
 app.use('/site/card', cardRoute);
 app.use('/site/admin', adminRoute);
 

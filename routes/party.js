@@ -148,8 +148,7 @@ router.get('/:partyCode', function(req, res){
         if(err){
             res.redirect('err');
         }else{
-
-            res.redirect('sucess' + pt);
+          res.render('event_details', {user: req.reqUser, event: pt})
         }
     });
 });
