@@ -117,6 +117,13 @@ router.post('/edit', function (req, res) {
   });
 });
 
+router.get('/founds/add', function (req, res) {
+
+  User.findOne({_id: req.reqUser._id}, function(err, pt){
+    res.render('fundos', {user: req.reqUser, party: pt});
+  });
+});
+
 router.post('/founds/add', function (req, res) {
   var founds = req.body.founds;
   User.find({_id: req.reqUser._id}, function (err, user) {

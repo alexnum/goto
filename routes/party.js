@@ -130,6 +130,13 @@ router.post('/contribute', function (req, res) {
   });
 });
 
+router.get('/contribute/:partyCode', function (req, res) {
+    var ptCode = req.params.partyCode;
+    Party.findOne({code: ptCode}, function(err, pt){
+      res.render('participar', {user: req.reqUser, party: pt});
+    });
+});
+
 router.post('/:id', function (req, res) {
   var partyCode = req.params.id;
   var newParty = req.body();
