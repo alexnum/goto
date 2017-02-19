@@ -11,6 +11,7 @@ var Party = mongoose.model('Party');
 var Company = mongoose.model('Company');
 var Contribuition = mongoose.model('Contribuition');
 var MenuItem = mongoose.model('MenuItem');
+var jwt = require('jsonwebtoken');
 
 
 router.post('/', function(req, res){
@@ -153,6 +154,15 @@ router.post('/contribute', function (req, res) {
                                 if (err) {
                                     res.redirect('err');
                                 } else {
+                                    var tk = {};
+                                    var tokenUser = req.reqUser;
+                                    tokenUser.walletBalance = tokenUser.walletBalance - contribuition.value;
+                                    tk._doc = tokenUser;
+                                    var token = jwt.sign(tk, req.app.get('superSecret'), {
+                                        expiresInMinutes: 43200000 // expires in 24 hours
+                                    });
+
+                                    res.cookie('x-access-token', token, {maxAge: 90000000, httpOnly: true});
                                     res.redirect('/');
                                 }
                             }

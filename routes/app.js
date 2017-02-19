@@ -64,7 +64,7 @@ router.post('/authenticate', function (req, res, next) {
   var user = req.body.username;
   var password = req.body.password;
 
-  User.findOne({login: user}).exec(function (err, admin) {
+  User.findOne({login: user}).populate('city').exec(function (err, admin) {
     var us = {};
     if (!admin) {
       res.render('login', {error: {field: "password", message: "Senha inválida"}});
