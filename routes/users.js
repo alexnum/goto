@@ -55,6 +55,7 @@ router.get('/events/mine', function (req, res) {
 router.get('/events/participating', function (req, res) {
   var now = new Date();
   Party.find({
+    owner: {$ne: req.reqUser._id},
     users: req.reqUser._id,
     date: {$gt: now}
   }).populate('users').exec(function (err, parties) {

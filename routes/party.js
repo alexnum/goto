@@ -9,6 +9,7 @@ var User = mongoose.model('User');
 var Party = mongoose.model('Party');
 var Company = mongoose.model('Company');
 var Contribuition = mongoose.model('Contribuition');
+var MenuItem = mongoose.model('MenuItem');
 
 
 router.post('/', function(req, res){
@@ -34,8 +35,9 @@ router.get('/filter', function (req, res) {
     case 'MINE':
       query = {
         users: req.reqUser._id,
+        owner: {$ne: req.reqUser._id},
         date: {$gt: now},
-        name: new RegExp(nameOrId, 'i'),
+        name: new RegExp(nameOrId, 'i')
       };
       break;
     case 'OWNER':
@@ -147,6 +149,13 @@ router.post('/:id', function (req, res) {
       res.redirect('sucess');
     }
   });
+});
+
+router.get('/new', function (req, res) {
+    var companyId = req.query.companyId;
+    MenuItem.find({company: companyId}, function(err, items){
+      res.render('new_event', {items: items, companyId: companyId, user: reqUser})
+    });
 });
 
 router.get('/:partyCode', function (req, res) {
