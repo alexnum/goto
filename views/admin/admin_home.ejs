@@ -2,46 +2,58 @@
 
 <div class="wrapper wrapper-content">
     <div class="container">
-        <div class="row">
-    <div class="col-md-offset-4 col-md-4">
-        <% if (typeof error != 'undefined') { %>
-            <div class="alert alert-danger">{{error.message}}</div>
-        <%}%>
-        <h3 style="text-align: center;">Adicionar Empresa</h3>
-        <form class="form-login" id="form1" method="post" action="/site/company/">
-            <input type="text" name="name" class="form-control input-sm" placeholder="Nome"/>
-            <input type="text" name="address" class="form-control input-sm" placeholder="Endereço"/>
-
-            <input class="typeahead form-control">
-            <label>Métodos de pagamento de crédito</label>
-            <% for (var i in payaments.credit) {
-                    var credit = payaments.credit[i];
-             %>
-                <input type="checkbox" class="form-check-input" name="payamentMethos" value="<%- credit._id %>"> <%- credit.name %> <br>
+    <div class="row">
+        <div class="col-lg-8" style="margin-left: 16%; margin-top: 2%;">
+            <div class="">
+            <% if (typeof error != 'undefined') { %>
+                <div class="alert alert-danger">{{error.message}}</div>
             <%}%>
-            <label>Métodos de pagamento de débito</label>
-            <% for (var i in payaments.debit) {
-                var debit = payaments.debit[i];
-            %>
-                <input type="checkbox" class="form-check-input" name="payamentMethos" value="<%- debit._id %>"> <%- debit.name %><br>
-            <%}%>
-            <input type="text" name="phoneNumber" class="form-control input-sm" placeholder="Telefone"/>
-            <div class="form-group">
-                <label for="selectCategory">Selecione a categoria</label>
-                <select class="form-control" id="selectCategory" name="category">
-                    <option value="FOOD">Comida</option>
-                    <option value="MUSIC">Música</option>
-                    <option value="PARTY">Festa</option>
-                    <option value="SPORTS">Esportes</option>
-                    <option value="MOVIES">Filmes</option>
-                    <option values="OTHERS">Outros</option>
-                </select>
+            <div class="ibox-title">
+                <h3 style="text-align: center;">Adicionar Empresa</h3>
             </div>
-            <button type="submit" class="form-control btn btn-primary btn-md">Registrar <i
-                    class="fa fa-sign-in"></i></button>
-        </form>
+            <div class="ibox-content">
+            <form class="form-login" id="form1" method="post" action="/site/company/">
+                <input type="text" name="name" class="form-control input-sm" placeholder="Nome"/>
+                <input type="text" name="address" class="form-control input-sm" placeholder="Endereço"/>
+                <input class="typeahead form-control " placeholder="Cidade">
+                <h4 style="margin-left: 1%">Métodos de pagamento de crédito</h4>
+                <% for (var i in payaments.credit) {
+                        var credit = payaments.credit[i];
+                 %>
+                <div style="margin-left: 1%">
+                    <label for="checkbox1">
+                        <input type="checkbox" name="payamentMethos" style="cursor: pointer" value="<%- credit._id %>"> <%- credit.name %> <br>
+                    </label>
+                </div>
+                <%}%>
+                <h4 style="margin-left: 1%">Métodos de pagamento de débito</h4>
+                <% for (var i in payaments.debit) {
+                    var debit = payaments.debit[i];
+                %>
+                <div style="margin-left: 1%">
+                    <label for="checkbox2">
+                        <input type="checkbox" name="payamentMethos" style="cursor: pointer" value="<%- debit._id %>"> <%- debit.name %><br>
+                    </label>
+                </div>
+                <%}%>
+                <input type="text" name="phoneNumber" class="form-control input-sm" placeholder="Telefone"/>
+                <div class="form-group">
+                    <h4 for="selectCategory" style="margin-left: 1%">Selecione a categoria</h4>
+                    <select class="form-control" id="selectCategory" name="category">
+                        <option value="FOOD">Comida</option>
+                        <option value="MUSIC">Música</option>
+                        <option value="PARTY">Festa</option>
+                        <option value="SPORTS">Esportes</option>
+                        <option value="MOVIES">Filmes</option>
+                        <option values="OTHERS">Outros</option>
+                    </select>
+                </div>
+                <button type="submit" class="form-control btn btn-primary btn-md">Registrar</button>
+            </form>
+            </div>
+            </div>
+        </div>
     </div>
-</div>
     </div>
 </div>
 
@@ -50,6 +62,9 @@
     .alert {
         margin: 12pt;
         margin-left: 22pt;
+    }
+    .tt-input{
+        width: 710px;
     }
 
     .form-control {
@@ -76,7 +91,7 @@
     }
 
     .tt-menu { /* UPDATE: newer versions use tt-menu instead of tt-dropdown-menu */
-        width: 422px;
+        width: 710px;
         margin-top: 12px;
         padding: 8px 0;
         background-color: #fff;
