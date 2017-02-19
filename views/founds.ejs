@@ -1,3 +1,5 @@
+<% include layout_start %>
+
 <div class="wrapper wrapper-content">
     <div class="container">
         <div class="wrapper wrapper-content animated fadeInUp">
@@ -8,18 +10,18 @@
                     </div>
                     <div class="ibox-content" style="min-height: 250px;">
 
-                        <form role="form" id="payment-form">
+                        <form role="form" id="payment-form" method="post" action="founds/add">
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="form-group">
                                         <label>VALOR (R$)</label>
-                                        <input type="text" class="form-control" name="nameCard"/>
+                                        <input type="text" class="form-control" name="founds"/>
                                     </div>
                                 </div>
                                 <div class="col-xs-12">
                                     <div class="form-group">
                                         <label>FORMA DE PAGAMENTO</label>
-                                        <select class="form-control m-b" name="account" style="cursor: pointer;">
+                                        <select class="form-control m-b" name="payment" style="cursor: pointer;">
                                             <option>Boleto Bancário</option>
                                             <option>Visa **** **** **** 6508</option>
                                         </select>
@@ -28,7 +30,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-xs-12" style="text-align: right; margin-top: 5%">
-                                    <a class="btn btn-primary" type="submit">Adicionar</a>
+                                    <input class="btn btn-primary" type="submit" value="Adicionar"></input>
                                 </div>
                             </div>
                         </form>
@@ -43,8 +45,10 @@
     $(document).ready(function() {
         $("#ionrange_150").ionRangeSlider({
             min: 1,
-            max: 100,
+            max: 500,
             prefix: "R$"
         });
     });
 </script>
+
+<% include layout_end %>

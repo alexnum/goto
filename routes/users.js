@@ -109,6 +109,23 @@ router.get('/account', function (req, res) {
   });
 });
 
+router.get('/account/founds', function (req, res) {
+  User.find({_id: req.reqUser._id}).populate('cards').exec(function (err, users) {
+    if (err) {
+      res.redirect('err');
+    } else {
+      var user = users[0];
+      if (_.isArray(user.cards)) {
+        user.cards.map(function (card) {
+          card._doc.lastDigits = card.number.slice(-2);
+        });
+      }
+
+      res.render("founds", {user: user});
+    }
+  });
+});
+
 router.post('/edit', function (req, res) {
   var updatedUser = req.body;
   User.update(updatedUser, {_id: req.reqUser._id}, {}, function (err, num) {
@@ -120,25 +137,19 @@ router.post('/edit', function (req, res) {
   });
 });
 
-router.get('/founds/add', function (req, res) {
-
-  User.findOne({_id: req.reqUser._id}, function(err, pt){
-    res.render('fundos', {user: req.reqUser, party: pt});
-  });
-});
-
-router.post('/founds/add', function (req, res) {
+router.post('/account/founds/add', function (req, res) {
   var founds = req.body.founds;
-  User.find({_id: req.reqUser._id}, function (err, user) {
+  User.findOne({_id: req.reqUser._id}, function (err, user) {
     if (err) {
       res.redirect("err");
     } else {
-      user.founds = user.walletBalance + founds;
+      user.walletBalance = Number(user.walletBalance) + Number(founds);
+
       user.save(function (err, usr) {
         if (err) {
           res.redirect(err);
         } else {
-          res.redirect('/')
+          res.redirect('/site/user/account')
         }
       })
     }
