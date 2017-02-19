@@ -1,5 +1,9 @@
 <% include layout_start %>
 
+<% function valuePercent(current, total) {
+    return ((current / total) * 100).toFixed(2);
+}%>
+
 <div class="wrapper wrapper-content">
     <div class="container">
         <div class="row">
@@ -56,17 +60,17 @@
                                                 </div>
                                             </td>
                                             <td class="project-completion">
-                                                <small style="font-size: 100%;">Total arrecadado: 45%</small>
+                                                <small style="font-size: 100%;">Total arrecadado: <%- valuePercent(parties[i].currentValue, parties[i].totalValue)  %>%</small>
                                                 <div class="progress progress-mini" style="height: 30px;">
-                                                    <div style="height: 29px;width: 45%;" class="progress-bar"></div>
+                                                    <div style="height: 29px;width: <%- valuePercent(parties[i].currentValue, parties[i].totalValue) %>%;" class="progress-bar"></div>
                                                 </div>
                                             </td>
                                             <td class="project-actions" style="">
-                                                <span style="font-size: 24px;">R$ 85000.00</span><br>
+                                                <span style="font-size: 24px;">R$<%- parties[i].totalValue %></span><br>
                                                 <span style="font-size: initial;"><i class="fa fa-users"
                                                                                      style="margin-right: 10px;">
 
-                                                    </i><%- parties[i].contributions.length + 1 %>/10000</span>
+                                                    </i><%- parties[i].contributions.length + 1 %>/<%- parties[i].capacity %></span>
                                             </td>
                                             <td style="text-align: right">
                                                 <a href="/site/event/<%- parties[i].code %>"><button class="btn btn-white btn-lg">Ver mais
