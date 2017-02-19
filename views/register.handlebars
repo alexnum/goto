@@ -11,20 +11,14 @@
                     <div class="ibox-title">
                         <h5>Cadastro</h5>
                     </div>
+                    <form id="formRegister" method="POST" action="/register">
                     <div class="ibox-content">
                         <div id="wizard">
                             <h1>Localização</h1>
-                            <div class="step-content">
+                            <div class="step-content" style="height: 300px;">
                                 <div class="col-lg-8 text-center" style="margin-left: 20%">
-                                    <h2>Informe sua localização</h2>
-                                    <div class="form-group">
-                                        <label style="margin-left: -90%">Estado</label>
-                                        <input id="userName_n" name="userName" type="text" class="form-control required">
-                                    </div>
-                                    <div class="form-group">
-                                        <label style="margin-left: -90%">Cidade</label>
-                                        <input id="password_n" name="password" type="text" class="form-control required">
-                                    </div>
+                                    <h2>Informe sua cidade</h2>
+                                    <input class="typeahead form-control">
                                 </div>
                             </div>
 
@@ -34,18 +28,28 @@
                                     <div class="col-lg-8 text-center" style="margin-left: 20%; margin-top:-3%">
                                         <h2>Informe sua nova conta</h2>
                                         <div class="form-group">
+                                            <label style="margin-left: -90%">Nome *</label>
+                                            <input id="userName" name="name" type="text"
+                                                   class="form-control required">
+                                        </div>
+                                        <div class="form-group">
                                             <label style="margin-left: -90%">E-mail *</label>
-                                            <input id="userName" name="userName" type="text"
+                                            <input id="userName" name="email" type="text"
+                                                   class="form-control required">
+                                        </div>
+                                        <div class="form-group">
+                                            <label style="margin-left: -90%">Login *</label>
+                                            <input id="userName" name="login" type="text"
                                                    class="form-control required">
                                         </div>
                                         <div class="form-group">
                                             <label style="margin-left: -90%">Senha *</label>
-                                            <input id="password" name="password" type="text"
+                                            <input id="password" name="password" type="password"
                                                    class="form-control required">
                                         </div>
                                         <div class="form-group">
                                             <label style="margin-left: -74%">Confirme a senha *</label>
-                                            <input id="confirm" name="confirm" type="text"
+                                            <input id="confirm" name="confirm" type="password"
                                                    class="form-control required">
                                         </div>
                                     </div>
@@ -64,6 +68,7 @@
                         </div>
 
                     </div>
+                    </form>
                 </div>
             </div>
 
@@ -73,64 +78,54 @@
 
 <script>
     $(document).ready(function () {
-        $("#wizard").steps();
 
-        $("#form").steps({
-            bodyTag: "fieldset",
-            onStepChanging: function (event, currentIndex, newIndex) {
-                // Always allow going backward even if the current step contains invalid fields!
-                if (currentIndex > newIndex) {
-                    return true;
-                }
-
-                // Forbid suppressing "Warning" step if the user is to young
-                if (newIndex === 3 && Number($("#age").val()) < 18) {
-                    return false;
-                }
-
-                var form = $(this);
-
-                // Clean up if user went backward before
-                if (currentIndex < newIndex) {
-                    // To remove error styles
-                    $(".body:eq(" + newIndex + ") label.error", form).remove();
-                    $(".body:eq(" + newIndex + ") .error", form).removeClass("error");
-                }
-
-                // Disable validation on fields that are disabled or hidden.
-                form.validate().settings.ignore = ":disabled,:hidden";
-
-                // Start validation; Prevent going forward if false
-                return form.valid();
-            },
-            onStepChanged: function (event, currentIndex, priorIndex) {
-                // Suppress (skip) "Warning" step if the user is old enough.
-                if (currentIndex === 2 && Number($("#age").val()) >= 18) {
-                    $(this).steps("next");
-                }
-
-                // Suppress (skip) "Warning" step if the user is old enough and wants to the previous step.
-                if (currentIndex === 2 && priorIndex === 3) {
-                    $(this).steps("previous");
-                }
-            },
-            onFinishing: function (event, currentIndex) {
-                var form = $(this);
-
-                // Disable validation on fields that are disabled.
-                // At this point it's recommended to do an overall check (mean ignoring only disabled fields)
-                form.validate().settings.ignore = ":disabled";
-
-                // Start validation; Prevent form submission if false
-                return form.valid();
-            },
+        $("#wizard").steps({
             onFinished: function (event, currentIndex) {
-                var form = $(this);
+                var form = $('#formRegister');
 
                 // Submit form input
                 form.submit();
+            },
+            labels: {
+                next: "Próximo",
+                previous: "Anterior",
+                finish: "Finalizar"
             }
         });
+
+
+        var movies = new Bloodhound({
+            datumTokenizer: function (datum) {
+                return Bloodhound.tokenizers.whitespace(datum.value);
+            },
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            remote: {
+                url: '/city?q=%QUERY',
+                wildcard: '%QUERY',
+                filter: function (cities) {
+                    // Map the remote source JSON array to a JavaScript object array
+                    return $.map(cities, function (city) {
+                        return {
+                            id: city._id,
+                            value: city.nome + ", " + city.state.sigla
+                        };
+                    });
+                }
+            }
+        });
+
+        movies.initialize();
+
+// Instantiate the Typeahead UI
+        $('.typeahead').typeahead(null, {
+            displayKey: 'value',
+            source: movies.ttAdapter()
+        }).on('typeahead:selected', function(e, data) {
+            var input = $("<input>")
+                    .attr("type", "hidden")
+                    .attr("name", "city").val(data.id);
+            $('#formRegister').append($(input));
+        });;
     });
 
 </script>

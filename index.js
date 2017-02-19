@@ -92,6 +92,13 @@ app.engine('handlebars', handlebars({
         return options.fn(this);
       }
       return options.inverse(this);
+    },
+    checkUser: function(user, options) {
+        if(user && !user.role == 'ADMIN') {
+            return false;
+        }else{
+          return typeof user != undefined;
+        }
     }
   }
 }));
