@@ -15,7 +15,7 @@ var partySchema = mongoose.Schema({
     description: String,
     //TODO DOnt receive in request
     owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    contributions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Contribuition' }],
+    contribuitions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Contribuition' }],
     tag: [String],
     code: String,
     minValue: Number,

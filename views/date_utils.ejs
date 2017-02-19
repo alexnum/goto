@@ -1,0 +1,41 @@
+<%
+
+const weekDays = {
+    '0': 'Dom',
+    '1': 'Seg',
+    '2': 'Ter',
+    '3': 'Qua',
+    '5': 'Qui',
+    '6': 'Sex',
+    '7': 'Sab'
+};
+
+const monthNames = {
+    '0': 'Jan',
+    '1': 'Fev',
+    '2': 'Mar',
+    '3': 'Abr',
+    '5': 'Jun',
+    '6': 'Jul',
+    '7': 'Ago',
+    '8': 'Set',
+    '9': 'Out',
+    '10': 'Nov',
+    '11': 'Dez'
+};
+
+formateDate = function formateDate(date) {
+    var weekDay = weekDays[date.getDay()];
+    var day = date.getDate();
+    var month = monthNames[date.getMonth()];
+
+    return [weekDay, day, month];
+}
+
+pad = function (n, width, z) {
+    z = z || '0';
+    n = n + '';
+    return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+}
+
+%>

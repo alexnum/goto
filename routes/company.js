@@ -43,10 +43,16 @@ router.get('/:companyId', function (req, res) {
   var companyId = req.params.companyId;
   Company.findOne({
     _id: companyId
-  }).populate('parties').populate({path: 'city', model: 'City', populate: {path: 'state', model: 'State'}}).exec(function (err, company) {
+  }).populate('parties')
+    .populate({path: 'city', model: 'City', populate: {path: 'state', model: 'State'}})
+    .populate({path: 'parties', model: 'Party', populate: {path: 'contributions', model: 'Contribuition'}}).exec(function (err, company) {
     if (err) {
       res.redirect('err');
     } else {
+      for (var i in company.parties) {
+        company.parties[i].place = company;
+      }
+
       res.render('company_details', {user: req.reqUser, company: company})
     }
   })
