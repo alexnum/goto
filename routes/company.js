@@ -41,7 +41,7 @@ router.get('/:companyId/filter?', function(req, res){
 
 router.get('/:companyId', function (req, res) {
   var companyId = req.params.companyId;
-  Company.find({
+  Company.findOne({
     _id: companyId
   }).populate('parties').exec(function (err, company) {
     if (err) {

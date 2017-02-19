@@ -12,16 +12,15 @@
                         </div>
                         <div class="ibox-content">
                             <div class="project-list" style="font-size: 14px">
-                                <h1 style="margin-bottom: 20px">Universidade Federal de Campina Grande</h1>
+                                <h1 style="margin-bottom: 20px"><%- company.name %></h1>
 
                                 <div class="join-vertical-text" style="margin-top: 10px">
-                                    <h5 class="join-vertical-text">Rua das Juremas, 666</h5>
-                                    <h5 class="join-vertical-text">Campina Grande - Paraíba</h5>
+                                    <h5 class="join-vertical-text"><%- company.address %></h5>
+                                    <h5 class="join-vertical-text"><%- company.city ? company.city.nome : '' %> - <%- company.city.state ? company.city.state.nome : ''%></h5>
                                     <h5>83 3322 2245</h5>
                                 </div>
 
-                                <h4 style="margin-top: 30px">Um local aconchegante e familiar. Um local para se passar o
-                                    tempo e perder a vida</h4>
+                                <h4 style="margin-top: 30px"><%- company.description %></h4>
                                 <div>
                                     <div class="slick_demo_2" style="margin-top: 20px;width: 97.5%; margin-left: 10px;">
                                         <div>
