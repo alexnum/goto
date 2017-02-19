@@ -1,11 +1,12 @@
+<% include layout_start %>
 
 <div class="wrapper wrapper-content">
     <div class="container">
         <div class="row">
     <div class="col-md-offset-4 col-md-4">
-        {{#if error}}
+        <% if (typeof error != 'undefined') { %>
             <div class="alert alert-danger">{{error.message}}</div>
-        {{/if}}
+        <%}%>
         <h3 style="text-align: center;">Adicionar Empresa</h3>
         <form class="form-login" id="form1" method="post" action="/site/company/">
             <input type="text" name="name" class="form-control input-sm" placeholder="Nome"/>
@@ -133,3 +134,5 @@
         });;
     });
 </script>
+
+<% include layout_end %>
