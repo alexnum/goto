@@ -1,9 +1,8 @@
 <% if (typeof parties != 'undefined') { %>
 <% include date_utils %>
-
 <% function valuePercent(current, total) {
     return ((current / total) * 100).toFixed(2);
-}%>
+} %>
 
 <table class="table table-hover">
     <tbody>
@@ -27,28 +26,35 @@
             </small>
             <div style="display: flex; margin-top: 10px">
                 <h4><i class="fa fa-map-marker"></i>&nbsp;<%- parties[i].place.name %></h4>
-                <h4 style="margin-left: 10px"><i class="fa fa-clock-o"></i> <%- pad(rawDate.getHours(), 2) + ':' + pad(rawDate.getMinutes(), 2) + 'h' %> </h4>
+                <h4 style="margin-left: 10px"><i
+                            class="fa fa-clock-o"></i> <%- pad(rawDate.getHours(), 2) + ':' + pad(rawDate.getMinutes(), 2) + 'h' %>
+                </h4>
             </div>
         </td>
         <td class="project-completion">
-            <small style="font-size: 100%;">Total arrecadado: <%- valuePercent(parties[i].currentValue, parties[i].totalValue)  %>%</small>
+            <small style="font-size: 100%;">Total
+                arrecadado: <%- valuePercent(parties[i].currentValue, parties[i].totalValue) %>%
+            </small>
             <div class="progress progress-mini" style="height: 30px;">
-                <div style="height: 29px;width: <%- valuePercent(parties[i].currentValue, parties[i].totalValue) %>%;" class="progress-bar"></div>
+                <div style="height: 29px;width: <%- valuePercent(parties[i].currentValue, parties[i].totalValue) %>%;"
+                     class="progress-bar"></div>
             </div>
         </td>
         <td class="project-actions" style="">
             <span style="font-size: 24px;">R$<%- parties[i].totalValue %></span><br>
-            <span style="font-size: initial;"><i class="fa fa-users"
-                                                 style="margin-right: 10px;">
-
-                                                    </i><%- (parties[i].contribuitions ? parties[i].contribuitions.length : 0) + 1 %>/<%- parties[i].capacity %></span>
+            <span style="font-size: initial;"><i class="fa fa-users" style="margin-right: 10px;">
+                </i><%- (parties[i].contribuitions ? parties[i].contribuitions.length : 0) %>
+                    /<%- parties[i].capacity %>
+            </span>
         </td>
         <td style="text-align: right">
-            <a href="/site/event/<%- parties[i].code %>"><button class="btn btn-white btn-lg">Ver mais
-                </button></a>
+            <a href="/site/event/<%- parties[i].code %>">
+                <button class="btn btn-white btn-lg">Ver mais
+                </button>
+            </a>
         </td>
     </tr>
-    <%}%>
+    <% } %>
     </tbody>
 </table>
-<%}%>
+<% } %>

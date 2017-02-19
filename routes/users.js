@@ -39,7 +39,8 @@ router.get('/events/mine', function (req, res) {
   Party.find({
     owner: req.reqUser._id,
     date: {$gt: now}
-  }).populate('users').populate('place').exec(function (err, parties) {
+  }).populate('users')
+    .populate('place').exec(function (err, parties) {
     if (err) {
       res.render('err');
     } else {
@@ -47,6 +48,7 @@ router.get('/events/mine', function (req, res) {
         preProcessParty(item, req.reqUser._id);
         return item;
       });
+
       res.render('events', {parties: processedParties, type: 'MINE', user: req.reqUser});
     }
   });

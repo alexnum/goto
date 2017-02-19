@@ -160,11 +160,16 @@ router.get('/new', function (req, res) {
 
 router.get('/:partyCode', function (req, res) {
   var partyCode = req.params.partyCode;
-  Party.findOne({code: partyCode}, function (err, pt) {
+  Party.findOne({code: partyCode})
+    .populate('place')
+    .populate({path: 'place', model: 'Company', populate: {path: 'city', model: 'City', populate: {path: 'state', model: 'State'}}})
+    .populate('contribuitions')
+    .populate({path: 'contributions', model: 'Contribuition', populate: {path: 'user', model: 'User'}})
+    .exec(function (err, pt) {
     if (err) {
       res.redirect('err');
     } else {
-      res.render('event_details', {user: req.reqUser, event: pt})
+      res.render('event_details', {user: req.reqUser, party: pt})
     }
   });
 });
