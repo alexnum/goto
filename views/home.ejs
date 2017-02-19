@@ -1,0 +1,77 @@
+<% include layout_start %>
+
+<div id="wrapper">
+    <div id="page-wrapper" class="gray-bg">
+        <div class="wrapper wrapper-content">
+            <div class="container">
+                <div class="wrapper wrapper-content animated fadeInUp">
+                    <div class="ibox">
+                        <div class="ibox-title">
+                            <h5>Estabelecimentos</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="row m-b-sm m-t-sm">
+                                <div class="col-md-2">
+                                    <div>
+                                        <select class="form-control m-b">
+                                            <option value="OTHERS">Categoria</option>
+                                            <option value="PARTY">Festa</option>
+                                            <option value="MUSIC">Música</option>
+                                            <option value="SPORTS">Esporte</option>
+                                            <option value="MOVIES">Cinema</option>
+                                            <option value="OTHERS">Outros</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="input-group"><input style="height: 35px;" type="text"
+                                                                    placeholder="Encontre o estabelecimento..."
+                                                                    class="input-sm form-control"> <span
+                                            class="input-group-btn">
+                                        <button type="button" class="btn btn-sm btn-primary" style="height: 35px;"> Buscar</button> </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project-list">
+                                <table class="table table-hover">
+                                    <tbody>
+                                        <% for (var i in companies) { %>
+                                        <tr>
+                                            <td class="project-status">
+                                            <span href="#"><img alt="image" src="/mc.png" class="img-circle"
+                                                                style="width: 90px; height: 90px;"/></span>
+                                            </td>
+                                            <td class="project-title" style="max-width: 360px;">
+                                                <a href="project_detail.html" style="font-size: 20px;">McDonald's</a>
+                                                <br/>
+                                                <small style="font-size: 100%"><%= companies[i].description %>
+                                                </small>
+                                            </td>
+                                            <td class="project-completion">
+                                                <p><%= companies[i].address %></p>
+                                            </td>
+                                            <td class="project-actions">
+                                                <a href="/site/company/<%= companies[i]._id %>" class="btn btn-white btn-lg">Ver mais </a>
+                                            </td>
+                                        </tr>
+                                        <%}%>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="footer">
+            <div>
+                GoTo &copy; 2017
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<% include layout_end %>

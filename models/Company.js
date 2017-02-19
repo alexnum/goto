@@ -10,6 +10,7 @@ var companySchema = mongoose.Schema({
     payamentMethos: [{ type: mongoose.Schema.Types.ObjectId, ref: 'PayamentMethod' }],
     address: String,
     location: { lat: Number, lng: Number },
+    description: String,
     phoneNumber: String,
     city: { type: mongoose.Schema.Types.ObjectId, ref: 'City' },
     category: String,

@@ -1,11 +1,13 @@
+<% include layout_start %>
+
 <div id="wrapper">
     <div class="wrapper wrapper-content animated fadeInDown loginscreen col-lg-8"
          style="margin-left: 18%; margin-top:2%;">
         <div class="row">
             <div class="col-lg-12">
-                {{#if error}}
-                    <div class="alert alert-danger">{{error.message}}</div>
-                {{/if}}
+                <% if (typeof error != 'undefined') { %>
+                    <div class="alert alert-danger"><%- error.message %></div>
+                <% } %>
 
                 <div class="ibox">
                     <div class="ibox-title">
@@ -142,3 +144,5 @@
         </form>
     </div>
 </div>-->
+
+<% include layout_end %>

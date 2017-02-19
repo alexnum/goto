@@ -2,6 +2,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var handlebars = require('express-handlebars');
 var cookieParser = require('cookie-parser');
+var expressLayouts = require('express-ejs-layouts');
 
 var port = process.env.PORT || 5000;
 //var db = 'mongodb://heroku_5qcn5df4:l0imr1m3a4sse3dauep5qj131s@ds033096.mlab.com:33096/heroku_5qcn5df4';
@@ -81,29 +82,9 @@ app.use('/site/event', partyRoute);
 app.use('/site/card', cardRoute);
 app.use('/site/admin', adminRoute);
 
-app.engine('handlebars', handlebars({
-  defaultLayout: 'main',
-  helpers: {
-    ifIn: function(elem, list, options) {
-      if(list == undefined){
-        return false;
-      }
-      if(list.indexOf(elem) > -1) {
-        return options.fn(this);
-      }
-      return options.inverse(this);
-    },
-    checkUser: function(user, options) {
-        if(user && !user.role == 'ADMIN') {
-            return false;
-        }else{
-          return typeof user != undefined;
-        }
-    }
-  }
-}));
-
-app.set('view engine', 'handlebars');
+app.set('view engine', 'ejs');
+app.use(expressLayouts);
+app.set('views', './views');
 
 app.get('/', function(req, res) {
 

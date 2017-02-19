@@ -8551,3 +8551,7 @@ body.md-skin {
     margin: 0;
   }
 }
+
+body {
+    background-color: #f3f3f4;
+}
