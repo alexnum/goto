@@ -1,8 +1,7 @@
 /**
  * Created by GAEL on 18/12/2016.
  */
-var jwt = require('jsonwebtoken');
-var https = require('https');
+
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
@@ -13,7 +12,7 @@ var Party = mongoose.model('Party');
 var Company = mongoose.model('Company');
 var Contribuition = mongoose.model('Contribuition');
 
-router.get('/me', function (req, res, next) {
+router.get('/me', function (req, res) {
   //If the user isn't really authenticated in the server
   User.findOne({_id: req.reqUser._id}, {}, function (err, user) {
     if (err) {
@@ -23,7 +22,6 @@ router.get('/me', function (req, res, next) {
     }
   });
 });
-
 
 router.get('/home', function (req, res) {
   //If the user isn't really authenticated in the server
@@ -137,11 +135,9 @@ router.post('/founds/add', function (req, res) {
   });
 });
 
-
 router.get('/logout', function (req, res) {
   res.clearCookie('x-access-token');
   res.redirect('/');
 });
-
 
 module.exports = router;
